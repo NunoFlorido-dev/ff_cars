@@ -101,3 +101,13 @@ body{
     margin-top: 1rem;
     padding: 0.5rem;
 }
+
+#container .login_container p{
+    font-family: "Satoshi", sans-serif;
+}
+
+@media (max-width: 600px){
+    #container .login_container p{
+        font-size: 0.9rem;
+    }
+}

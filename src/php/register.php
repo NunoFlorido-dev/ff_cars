@@ -15,20 +15,17 @@ if (isset($_POST['SignUp'])) {
         echo "Email already exists!";
     } else {
         $balance = 0;
-        $last_id_result = pg_query($GLOBALS['connection'], "SELECT MAX(id) FROM user_web");
-        $last_id_row = pg_fetch_array($last_id_result);
-        $last_id = $last_id_row[0] + 1;
 
-        $insert = "INSERT INTO client (id, username, email, password, balance) VALUES ('$last_id', '$username', '$email', '$password', '$balance')";
+        $insert = "INSERT INTO user_web (username, email, password) VALUES ('$username', '$email', '$password')";
         pg_query($GLOBALS['connection'], $insert);
 
         if ($GLOBALS['connection']) {
-            // Destroy any existing session and start a new one
-            session_unset();  // Unset all session variables
-            session_destroy(); // Destroy the current session
+            // destroy  and start new session
+            session_unset();
+            session_destroy();
 
-            session_start();   // Start a new session
-            $_SESSION['username'] = $username;  // Set session variables for the new user
+            session_start();
+            $_SESSION['username'] = $username;
             $_SESSION['email'] = $email;
 
             header("location: ../index.php");

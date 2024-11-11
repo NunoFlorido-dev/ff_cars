@@ -22,7 +22,7 @@ session_start();
         <?php
         if (isset($_SESSION['username'])) {
             $email = $_SESSION['email'];
-            $query = pg_query($GLOBALS['connection'], "SELECT username FROM client WHERE email = '$email'");
+            $query = pg_query($GLOBALS['connection'], "SELECT username FROM user_web WHERE email = '$email'");
 
             if ($query) {
                 while ($row = pg_fetch_array($query)) {

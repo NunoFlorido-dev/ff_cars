@@ -1,42 +1,63 @@
 <?php
 session_start();
-
 include("php/connection.php");
-include("php/navbar.php");
+include("php/definemode.php");
 
+function fetchUsername($email) {
+    $query = pg_query($GLOBALS['connection'], "SELECT username FROM user_web WHERE email = '$email'");
+    if ($query) {
+        $row = pg_fetch_array($query);
+        return $row['username'] ?? null;
+    }
+    return null;
+}
+
+function renderNavLinks($alternateMode) {
+    if (!$alternateMode) {
+        return '
+            <a class="cart-link-nav normal-nav"> <img alt="cart icon" src="../assets/cart_icon.svg" /></a>
+            <a class="wallet-link-nav normal-nav"> <img alt="wallet icon" src="../assets/wallet_icon.svg" /></a>
+            <a class="user-link-nav normal-nav"> <img alt="user icon" src="../assets/user_icon.svg" /></a>
+            <div class="nav-mobile invisibility navbar-hidden">
+                <a class="cart-link-nav">Cart</a>
+                <a class="wallet-link-nav">Wallet</a>
+                <a class="user-link-nav">User</a>
+            </div>
+        ';
+    } else {
+        return '
+            <a class="key-link-nav normal-nav"> <img alt="key icon" src="../assets/key_admin.svg" /></a>
+            <a class="user-link-nav normal-nav"> <img alt="user icon" src="../assets/user_icon.svg" /></a>
+            <div class="nav-mobile invisibility navbar-hidden">
+                <a class="key-link-nav">Admin Tools</a>
+                <a class="user-link-nav">User</a>
+            </div>
+        ';
+    }
+}
 ?>
 
 <!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <title>FF.Cars | Homepage</title>
 </head>
 <body>
+<nav>
+    <a class="homepage-link-nav"><img alt="ff.cars logotype" src="../assets/ff_cars_logo.svg" /></a>
+    <?php if (isset($_SESSION['username'])): ?>
+        <div class="nav-right-container">
+            <?= renderNavLinks($GLOBALS['alternateMode']); ?>
+            <p class="username-checkout-nav"><?= htmlspecialchars(fetchUsername($_SESSION['email'])); ?>
+            </p>
+            <img class="burger-button invisibility nav-mobile" alt="burger menu icon" src="../assets/burger_icon.svg" />
 
-
-<div style="text-align:center; padding:15%;">
-    <p style="font-size:50px; font-weight:bold;">
-        Hello
-        <?php
-        if (isset($_SESSION['username'])) {
-            $email = $_SESSION['email'];
-            $query = pg_query($GLOBALS['connection'], "SELECT username FROM user_web WHERE email = '$email'");
-
-            if ($query) {
-                while ($row = pg_fetch_array($query)) {
-                    echo $row['username'];
-                }
-            } else {
-                echo "Error: " . pg_last_error($GLOBALS['connection']);
-            }
-        }
-        ?>
-    </p>
-</div>
-
+        </div>
+    <?php endif; ?>
+</nav>
+<script src="script.js"></script>
 </body>
 </html>

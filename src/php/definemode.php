@@ -1,6 +1,8 @@
 <?php
 include("connection.php");
 
+$alternateMode = null;
+
 if ($GLOBALS['connection']) {
     if (isset($_SESSION['username'])) {
         $email = $_SESSION['email'];
@@ -20,13 +22,13 @@ if ($GLOBALS['connection']) {
                 // Fetch admin row and check if user is admin
                 $adminRow = pg_fetch_array($idAdminQuery);
                 if ($adminRow) {
-                    echo '<p>Admin</p>';
+                    $alternateMode = true;
                 }
 
                 // Fetch client row and check if user is client
                 $clientRow = pg_fetch_array($idClientQuery);
                 if ($clientRow) {
-                    echo '<p>Client</p>';
+                    $alternateMode = false;
                 }
             }
         }

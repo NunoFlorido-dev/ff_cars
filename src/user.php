@@ -38,7 +38,7 @@ include("php/userinfo.php");
 <main>
 
     <section class="user-info">
-        <?php if (isset($_SESSION['username']) && isset($_SESSION['email']) && isset($_SESSION['password'])); ?>
+        <?php ?>
       <img alt="user icon" src="/assets/user_icon.svg">
 
         <div class="username_cont">
@@ -56,6 +56,13 @@ include("php/userinfo.php");
             <h1>Password</h1>
             <p><?= $_SESSION['password'] ?></p>
         </div>
+
+        <div class="id_cont">
+            <h1>ID</h1>
+            <p><?= htmlspecialchars(fetchID($_SESSION['email'])); ?></p>
+        </div>
+
+        <?= seeIFAdmin(); ?>
 
     </section>
 

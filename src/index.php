@@ -18,21 +18,27 @@ function renderNavLinks($alternateMode) {
             <a class="cart-link-nav normal-nav"> <img alt="cart icon" src="../assets/cart_icon.svg" /></a>
             <a class="wallet-link-nav normal-nav"> <img alt="wallet icon" src="../assets/wallet_icon.svg" /></a>
             <a class="user-link-nav normal-nav"> <img alt="user icon" src="../assets/user_icon.svg" /></a>
-            <div class="nav-mobile invisibility navbar-hidden">
-                <a class="cart-link-nav">Cart</a>
-                <a class="wallet-link-nav">Wallet</a>
-                <a class="user-link-nav">User</a>
-            </div>
         ';
     } else {
         return '
             <a class="key-link-nav normal-nav"> <img alt="key icon" src="../assets/key_admin.svg" /></a>
             <a class="user-link-nav normal-nav"> <img alt="user icon" src="../assets/user_icon.svg" /></a>
-            <div class="nav-mobile invisibility navbar-hidden">
+        ';
+    }
+}
+
+function renderNavLinksResponsive($alternateMode){
+    if(!$alternateMode){
+        return '<div class="mobile-nav invisibility nav-responsive">
+                <a class="cart-link-nav">Cart</a>
+                <a class="wallet-link-nav">Wallet</a>
+                <a class="user-link-nav">User</a>
+                </div>';
+    }else{
+        return '<div class="mobile-nav invisibility nav-responsive">
                 <a class="key-link-nav">Admin Tools</a>
                 <a class="user-link-nav">User</a>
-            </div>
-        ';
+                </div>';
     }
 }
 ?>
@@ -47,6 +53,7 @@ function renderNavLinks($alternateMode) {
 </head>
 <body>
 <nav>
+    <div class="top-nav">
     <a class="homepage-link-nav"><img alt="ff.cars logotype" src="../assets/ff_cars_logo.svg" /></a>
     <?php if (isset($_SESSION['username'])): ?>
         <div class="nav-right-container">
@@ -56,6 +63,10 @@ function renderNavLinks($alternateMode) {
             <img class="burger-button invisibility nav-mobile" alt="burger menu icon" src="../assets/burger_icon.svg" />
 
         </div>
+    </div>
+    <div class="bottom-nav">
+    <?= renderNavLinksResponsive($GLOBALS['alternateMode']); ?>
+    </div>
     <?php endif; ?>
 </nav>
 <script src="script.js"></script>

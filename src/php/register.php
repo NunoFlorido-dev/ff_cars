@@ -33,6 +33,8 @@ if (isset($_POST['SignUp'])) {
             session_start();
             $_SESSION['username'] = $username;
             $_SESSION['email'] = $email;
+            $_SESSION['password'] = $password;
+
 
             header("location: ../index.php");
             exit();
@@ -54,6 +56,7 @@ if (isset($_POST['LogIn'])) {
 
         $_SESSION['username'] = $row['username'];
         $_SESSION['email'] = $row['email'];
+        $_SESSION['password'] = $row['password'];
         header('location: ../index.php');
         exit();
     } else {

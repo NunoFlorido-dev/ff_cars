@@ -3,6 +3,8 @@ session_start();
 include("php/connection.php");
 include("php/definemode.php");
 include("php/nav.php");
+include("php/userinfo.php");
+
 
 ?>
 
@@ -17,7 +19,7 @@ include("php/nav.php");
 <body>
 <nav>
     <div class="top-nav">
-    <a class="homepage-link-nav"><img alt="ff.cars logotype" src="../assets/ff_cars_logo.svg" /></a>
+    <a class="homepage-link-nav" href="index.php"><img alt="ff.cars logotype" src="../assets/ff_cars_logo.svg" /></a>
     <?php if (isset($_SESSION['username'])): ?>
         <div class="nav-right-container">
             <?= renderNavLinks($GLOBALS['alternateMode']); ?>

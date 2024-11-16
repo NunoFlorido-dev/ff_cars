@@ -13,7 +13,7 @@ include("php/userinfo.php");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="nav.css">
+    <link rel="stylesheet" href="css/nav.css">
     <title>FF.Cars | Homepage</title>
 </head>
 <body>
@@ -34,6 +34,6 @@ include("php/userinfo.php");
     </div>
     <?php endif; ?>
 </nav>
-<script src="nav.js"></script>
+<script src="js/nav.js"></script>
 </body>
 </html>

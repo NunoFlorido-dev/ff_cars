@@ -12,8 +12,8 @@ include("php/userinfo.php");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="nav.css">
-    <link rel="stylesheet" href="user.css">
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/user.css">
     <title>FF.Cars | User</title>
 </head>
 <body>
@@ -73,6 +73,6 @@ include("php/userinfo.php");
 </main>
 
 
-<script src="nav.js"></script>
+<script src="js/nav.js"></script>
 </body>
 </html>

@@ -63,6 +63,7 @@ nav .top-nav .nav-right-container p {
         display: block;
         width: 2rem;
         height: auto;
+        cursor: pointer;
     }
 
     .navclose{

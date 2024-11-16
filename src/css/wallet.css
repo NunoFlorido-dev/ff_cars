@@ -1,0 +1,92 @@
+.hidden {
+    display: none;
+}
+.flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+.block {
+    display: block;
+}
+
+
+main{
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.wallet-cont{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    height: auto;
+    border: 2px solid var(--blue);
+    border-radius: 2rem;
+    padding: 2rem;
+    gap: 1.25rem;
+}
+
+@media (max-width: 920px){
+    .wallet-cont{
+        width: 60%;
+    }
+
+}
+
+@media (max-width: 550px){
+    .wallet-cont{
+        align-items: center;
+    }
+
+}
+
+.wallet-cont h1{
+    font-family: "Satoshi", sans-serif;
+    font-weight: lighter;
+    font-size: 1.5rem;
+}
+
+.wallet-cont p{
+    font-family: "ZT Talk", sans-serif;
+    font-weight: bold;
+    font-size: 2.5rem;
+}
+
+.wallet-cont button{
+    width: 6rem;
+    font-family: "Satoshi", sans-serif;
+    background-color: var(--green);
+    border: 1px solid var(--darkblue);
+    border-radius: 0.25rem;
+    padding: 0.25rem 1rem;
+    cursor: pointer;
+}
+
+.wallet-cont form label{
+    font-family: "Satoshi", sans-serif;
+}
+
+.wallet-cont form input[type=number]{
+    border-radius: 0.125rem;
+    border: 1px solid var(--darkblue);
+}
+
+.wallet-cont form input[type=submit]{
+    width: 4rem;
+    font-family: "Satoshi", sans-serif;
+    background-color: var(--green);
+    border: 1px solid var(--darkblue);
+    border-radius: 0.25rem;
+    cursor: pointer;
+    padding: 0.25rem
+
+}
+
+@media (max-width: 920px) {
+    .wallet-cont form input[type=submit]{
+        justify-self: center;
+    }
+}

@@ -29,3 +29,25 @@ function seeIFAdmin(): void
 ';
     }
 }
+
+function fetchBalance($email) {
+    $queryID = pg_query($GLOBALS['connection'], "SELECT id FROM user_web WHERE email = '$email'");
+
+    if ($queryID) {
+        $row = pg_fetch_array($queryID);
+
+        if ($row && isset($row['id'])) {
+            $userWebID = $row['id'];
+
+            $queryBalance = pg_query($GLOBALS['connection'], "SELECT balance FROM client WHERE user_web_id = $userWebID");
+
+            if ($queryBalance) {
+                $rowBalance = pg_fetch_array($queryBalance);
+
+                return $rowBalance['balance'] ?? null;
+            }
+        }
+    }
+
+    return null;
+}

@@ -23,9 +23,9 @@ function seeIFAdmin(): void
 {
     if($GLOBALS['alternateMode']){
         echo '<div class="admin-cont"> 
-   <h1>Admin?</h1>
-   <p>Yes</p>
-</div>
+        <h1>Admin?</h1>
+        <p>Yes</p>
+        </div>
 ';
     }
 }

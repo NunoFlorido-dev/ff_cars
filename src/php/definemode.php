@@ -15,7 +15,7 @@ if ($GLOBALS['connection']) {
                 $userId = $row['id']; // Extract the 'id' field from the row
 
                 // Query to check if user is an admin
-                $idAdminQuery = pg_query($GLOBALS['connection'], "SELECT user_web_id FROM admin WHERE user_web_id = '$userId'");
+                $idAdminQuery = pg_query($GLOBALS['connection'], "SELECT user_web_id FROM user_admin WHERE user_web_id = '$userId'");
                 // Query to check if user is a client
                 $idClientQuery = pg_query($GLOBALS['connection'], "SELECT user_web_id FROM client WHERE user_web_id = '$userId'");
 

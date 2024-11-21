@@ -1,7 +1,10 @@
 <?php
-include("php/connection.php");
-
 session_start();
+include("php/connection.php");
+include("php/definemode.php");
+include("php/nav.php");
+include("php/userinfo.php");
+
 
 ?>
 
@@ -9,32 +12,28 @@ session_start();
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/nav.css">
     <title>FF.Cars | Homepage</title>
 </head>
 <body>
+<nav>
+    <div class="top-nav">
+    <a class="homepage-link-nav" href="index.php"><img alt="ff.cars logotype" src="../assets/ff_cars_logo.svg" /></a>
+    <?php if (isset($_SESSION['username'])): ?>
+        <div class="nav-right-container">
+            <?= renderNavLinks($GLOBALS['alternateMode']); ?>
+            <p class="username-checkout-nav"><?= htmlspecialchars(fetchUsername($_SESSION['email'])); ?>
+            </p>
+            <img class="burger-button invisibility nav-mobile" alt="burger menu icon" src="../assets/burger_icon.svg" />
 
-<div style="text-align:center; padding:15%;">
-    <p style="font-size:50px; font-weight:bold;">
-        Hello
-        <?php
-        if (isset($_SESSION['username'])) {
-            $email = $_SESSION['email'];
-            $query = pg_query($GLOBALS['connection'], "SELECT username FROM user_web WHERE email = '$email'");
-
-            if ($query) {
-                while ($row = pg_fetch_array($query)) {
-                    echo $row['username'];
-                }
-            } else {
-                echo "Error: " . pg_last_error($GLOBALS['connection']);
-            }
-        }
-        ?>
-    </p>
-</div>
-
+        </div>
+    </div>
+    <div class="bottom-nav">
+    <?= renderNavLinksResponsive($GLOBALS['alternateMode']); ?>
+    </div>
+    <?php endif; ?>
+</nav>
+<script src="js/nav.js"></script>
 </body>
 </html>

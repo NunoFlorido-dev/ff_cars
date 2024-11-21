@@ -28,7 +28,6 @@ if (isset($_POST['add-funds'])) {
                     $currentBalance = $row['balance'];
                     $newBalance = $currentBalance + $addedFunds;
 
-                    // Update the balance securely
                     $updateQuery = pg_query_params(
                         $GLOBALS['connection'],
                         'UPDATE client SET balance = $1 WHERE user_web_id = $2',

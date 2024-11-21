@@ -1,0 +1,87 @@
+main{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    gap: 2rem;
+}
+
+.select-page{
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+
+}
+
+.select-page button{
+    width: 8rem;
+    font-family: "Satoshi", sans-serif;
+    background-color: var(--green);
+    border: 1px solid var(--darkblue);
+    border-radius: 0.25rem;
+    padding: 0.25rem 1rem;
+    cursor: pointer;
+}
+
+.general-page-cont{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid var(--darkblue);
+    width: 60%;
+    padding: 2rem;
+    gap: 1rem;
+    border-radius: 1rem;
+
+}
+
+.general-page-cont div{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+@media (max-width: 570px){
+    .general-page-cont div{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    }
+
+.general-page-cont div h2{
+    font-family: "ZT Talk", sans-serif;
+}
+
+.general-page-cont div p{
+    font-family: "Satoshi", sans-serif;
+    font-size: 1.25rem;
+}
+
+
+
+.cars-page-cont{
+
+
+}
+
+.display-open{
+    display: flex;
+}
+
+.display-close{
+    display: none;
+}
+
+#general-page{
+
+
+}
+
+#car-page{
+
+
+}

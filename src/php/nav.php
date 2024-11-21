@@ -8,7 +8,7 @@ function renderNavLinks($alternateMode) {
         ';
     } else {
         return '
-            <a class="key-link-nav normal-nav"> <img alt="key icon" src="/assets/key_admin.svg" /></a>
+            <a class="key-link-nav normal-nav" href="admintools.php"> <img alt="key icon" src="/assets/key_admin.svg" /></a>
             <a class="user-link-nav normal-nav" href="user.php"> <img alt="user icon" src="/assets/user_icon.svg" /></a>
         ';
     }
@@ -23,7 +23,7 @@ function renderNavLinksResponsive($alternateMode){
                 </div>';
     }else{
         return '<div class="mobile-nav invisibility nav-responsive">
-                <a class="key-link-nav">Admin Tools</a>
+                <a class="key-link-nav" href="admintools.php">Admin Tools</a>
                 <a class="user-link-nav" href="user.php">User</a>
                 </div>';
     }

@@ -1,0 +1,108 @@
+body{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+}
+
+.title{
+    font-size: 30px;
+}
+
+.search{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    border-radius: 10px;
+    text-align: left;
+    background-color: rgb(224, 224, 224);
+    padding-bottom: 17px;
+    margin-bottom: 40px;
+}
+
+.search_top{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 3px;
+    margin-bottom: 0px;
+    padding: 5px;
+    padding-right: 15px;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.search_top_textinput{
+    border: none;
+    outline: none;
+    padding: 15px;
+    border-radius: 10px;
+    width: 80%;
+}
+
+.search_top_button{
+    border: none;
+    margin-left: 5px;
+    border-radius: 8px;
+    width: 40px;
+    height: 40px;
+    align-self: right;
+    background-color: #B9EEC3;
+}
+
+.search_bottom{
+    padding-left: 15px;
+    margin-top: 12px;
+}
+
+.search_bottom_button{
+    border: none;
+    padding: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: 5px;
+    border-radius: 14px;
+    background-color: white;
+}
+
+.car_list{
+    /*GRID AND STUFF*/
+    display: grid;
+
+}
+
+.car_list_part{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 25vw;
+    padding: 20px;
+    border-radius: 14px;
+    box-shadow: 0 0 5px 2px rgb(224, 224, 224);
+}
+
+.img_wrapper{
+    width: 100%;
+    height: 200px;
+    border-radius: 14px;
+    background-color: rgb(224, 224, 224);
+}
+
+.car_name {
+    font-size: 20px;
+}
+
+.car_info{
+    display: flex;
+    flex-direction: row;
+}
+
+.car_list_page{
+    display: flex;
+    flex-direction: row;
+}
+
+.car_list_page_button{
+    margin: 20px;
+}

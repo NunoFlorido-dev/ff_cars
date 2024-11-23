@@ -6,6 +6,7 @@ body{
 }
 
 .title{
+    padding: 20px;
     font-size: 30px;
 }
 
@@ -47,7 +48,6 @@ body{
     border-radius: 8px;
     width: 40px;
     height: 40px;
-    align-self: right;
     background-color: #B9EEC3;
 }
 
@@ -69,7 +69,9 @@ body{
 .car_list{
     /*GRID AND STUFF*/
     display: grid;
-
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 10px;
 }
 
 .car_list_part{
@@ -80,6 +82,7 @@ body{
     padding: 20px;
     border-radius: 14px;
     box-shadow: 0 0 5px 2px rgb(224, 224, 224);
+    text-align: center;
 }
 
 .img_wrapper{

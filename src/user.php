@@ -14,6 +14,8 @@ include("php/userinfo.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/nav.css">
     <link rel="stylesheet" href="css/user.css">
+    <link href="https://fonts.cdnfonts.com/css/zt-talk" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/satoshi" rel="stylesheet">
     <title>FF.Cars | User</title>
 </head>
 <body>

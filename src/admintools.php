@@ -17,6 +17,8 @@ include("php/gentools.php");
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/nav.css">
     <link rel="stylesheet" href="css/admintools.css">
+    <link href="https://fonts.cdnfonts.com/css/zt-talk" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/satoshi" rel="stylesheet">
     <title>FF.Cars | Admin Tools</title>
 </head>
 <body>

@@ -16,6 +16,8 @@ include("php/userinfo.php");
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/nav.css">
     <link rel="stylesheet" href="css/wallet.css">
+    <link href="https://fonts.cdnfonts.com/css/zt-talk" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/satoshi" rel="stylesheet">
     <title>FF.Cars | Wallet</title>
 </head>
 <body>

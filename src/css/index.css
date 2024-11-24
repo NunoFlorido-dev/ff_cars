@@ -6,11 +6,19 @@ body{
 }
 
 .title{
-    font-size: 30px;
+    font-size: 1.75rem;
     font-family: "ZT Talk", serif;
     font-weight: bold;
     margin: 20px;
 }
+
+@media (max-width: 550px){
+    .title{
+        font-size: 1.25rem;
+    }
+
+}
+
 
 .search{
     display: flex;
@@ -25,93 +33,137 @@ body{
 
 .search_top{
     display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    margin: 3px;
-    margin-bottom: 0px;
-    padding: 5px;
-    padding-right: 15px;
-    border-radius: 10px;
+    margin: 0.25rem 0.25rem 0.75rem 0.25rem;
+    padding: 0.5rem 1rem 0.5rem 0.25rem;
+    border-radius: 0.75rem;
     background-color: white;
 }
+
 
 .search_top_textinput{
     border: none;
     outline: none;
-    padding: 15px;
-    border-radius: 10px;
-    width: 80%;
+    width: 90%;
     font-family: "Satoshi", sans-serif;
 }
 
-.search_top_button{
-    border: none;
-    margin-left: 5px;
-    border-radius: 8px;
-    width: 40px;
-    height: 40px;
-    align-self: flex-end;
-    background-color: #B9EEC3;
+@media (max-width: 1130px){
+.search_top_textinput{
+    width: 80%;
+}
 }
 
-.search_bottom{
-    padding-left: 15px;
-    margin-top: 12px;
+@media (max-width: 570px){
+    .search_top_textinput{
+        width: 70%;
+    }
+}
+
+
+.search_top_button{
+    border: none;
+    border-radius: 0.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    align-self: flex-end;
+    background-color: var(--green);
+}
+
+.search_top_button img{
+    width: 1.5rem;
+    place-self: center;
+    height: 1.5rem;
+    padding-top: 0.25rem;
+}
+
+.search_bottom {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-left: 0.75rem;
+    margin-right: 0.75rem;
 }
 
 .search_bottom_button{
     border: none;
-    padding: 10px;
-    padding-left: 15px;
-    padding-right: 15px;
-    margin-left: 5px;
-    border-radius: 14px;
+    padding: 0.75rem 1rem;
+    margin-top: 0.5rem;
+    border-radius: 1rem;
     background-color: white;
+    cursor: pointer;
+}
+
+
+@media (max-width: 840px){
+   .search_bottom{
+   }
 }
 
 .car_list{
-    /*GRID AND STUFF*/
-    display: grid;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    padding: 2rem 4rem 2rem 4rem;
 
 }
 
 .car_list_part{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    width: 25vw;
-    padding: 20px;
-    border-radius: 14px;
+    align-items: flex-start;
+    width: 20rem;
+    padding: 1rem;
+    border-radius: 1rem;
     box-shadow: 0 0 5px 2px rgb(224, 224, 224);
     font-family: "Satoshi", sans-serif;
 }
 
 .img_wrapper{
     width: 100%;
-    height: 200px;
+    height: 12rem;
     border-radius: 14px;
     background-color: rgb(224, 224, 224);
+    margin-bottom: 0.75rem;
 }
 
 .car_name {
-    font-size: 20px;
-    font-family: "Satoshi", sans-serif;
+    font-size: 1.25rem;
+    font-family: "ZT Talk", sans-serif;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
 }
 
 .car_info{
     display: flex;
-    flex-direction: row;
+    gap: 0.25rem;
+    font-size: 1rem;
     font-family: "Satoshi", sans-serif;
 }
 
 .car_list_page{
     display: flex;
     flex-direction: row;
+    align-items: center;
     font-family: "Satoshi", sans-serif;
 }
 
 .car_list_page_button{
-    margin: 20px;
+    margin: 2rem;
     font-family: "Satoshi", sans-serif;
+    background: none;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.car_list_page_button img{
+    width: 2rem;
+    height: auto;
 }

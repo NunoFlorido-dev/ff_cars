@@ -110,6 +110,10 @@ body{
 
 }
 
+.car_list a{
+    text-decoration: none;
+}
+
 .car_list_part{
     display: flex;
     flex-direction: column;
@@ -119,7 +123,9 @@ body{
     border-radius: 1rem;
     box-shadow: 0 0 5px 2px rgb(224, 224, 224);
     font-family: "Satoshi", sans-serif;
+    color: var(--black);
 }
+
 
 .img_wrapper{
     width: 100%;

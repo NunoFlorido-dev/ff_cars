@@ -129,6 +129,7 @@ $currentSort = $_GET['sort'] ?? null;
         <?php
         function extracted($rows): void
         {
+            $license_plate = htmlspecialchars($rows['license_plate']);
             $model = htmlspecialchars($rows['model']);
             $brand = htmlspecialchars($rows['brand']);
             $segment = htmlspecialchars($rows['segment']);
@@ -136,6 +137,7 @@ $currentSort = $_GET['sort'] ?? null;
             $year_from = htmlspecialchars($rows['year_from']);
             $km = htmlspecialchars($rows['km']);
             echo "
+           <a href='car_info.php?license_plate=$license_plate'>
                     <div class='car_list_part'>
                         <div class='img_wrapper'>Imagem</div>
                         <p class='car_name' >$brand $segment $model</p>
@@ -147,7 +149,8 @@ $currentSort = $_GET['sort'] ?? null;
                             <p>$fuel_type</p>
                         </div>
                         <p>X / day</p>
-                    </div>";
+                    </div>
+                    </a>";
         }
         if($values != null) {
             if (pg_num_rows($values) > 0) {

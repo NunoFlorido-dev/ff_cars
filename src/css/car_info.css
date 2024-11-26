@@ -1,0 +1,46 @@
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.car-container{
+    border: 1px solid var(--blue);
+    border-radius: 1rem;
+    width: 60%;
+    height: auto;
+    margin-top: 4rem;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2.5rem 2rem 2.5rem 2rem;
+}
+
+@media (max-width: 1080px) {
+    .car-container{
+        flex-direction: column;
+    }
+    
+}
+
+.car-container .left-part {
+display: flex;
+flex-direction: column;
+}
+
+.car-container .left-part img{
+
+}
+
+
+
+.car-container .text h1{
+    font-family: "ZT Talk", sans-serif;
+    font-size: 2.5rem;
+}
+
+.car-container .text p{
+    font-family: "Satoshi", sans-serif;
+    font-size: 1.25rem;
+}

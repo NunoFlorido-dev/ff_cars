@@ -3,6 +3,7 @@ session_start();
 include("php/connection.php");
 include("php/definemode.php");
 include("php/userinfo.php");
+include("php/carpage_var.php");
 include("php/nav.php");
 
 if (!isset($_GET['license_plate'])) {
@@ -29,6 +30,7 @@ $car = pg_fetch_assoc($result);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/car_info.css">
     <link href="https://fonts.cdnfonts.com/css/zt-talk" rel="stylesheet">
     <link href="https://fonts.cdnfonts.com/css/satoshi" rel="stylesheet">
     <title>FF.Cars | Car Info</title>
@@ -54,12 +56,28 @@ $car = pg_fetch_assoc($result);
 </nav>
 
 <main>
-<h1><?php echo htmlspecialchars($car['brand']) . " " . htmlspecialchars($car['model']); ?></h1>
+<div class="car-container">
+<div class="left-part">
+<img alt="car image" src="" />
+    <div class="variable_part">
+    <?= changeLeftPart($GLOBALS['alternateMode']);  ?>
+    </div>
+    </div>
+</div>
+<div class="text">
+<h1><?php echo htmlspecialchars($car['brand']) . " " .  htmlspecialchars($car['segment']) . " " .  htmlspecialchars($car['model']); ?></h1>
+<p>License Plate: <?php echo htmlspecialchars($car['license_plate']); ?></p>
+<p>Brand: <?php echo htmlspecialchars($car['brand']); ?></p>
 <p>Segment: <?php echo htmlspecialchars($car['segment']); ?></p>
 <p>Fuel Type: <?php echo htmlspecialchars($car['fuel_type']); ?></p>
 <p>Year: <?php echo htmlspecialchars($car['year_from']); ?></p>
 <p>KM: <?php echo htmlspecialchars($car['km']); ?></p>
+<p>Seats: <?php echo htmlspecialchars($car['seats']); ?></p>
+<p>Gearshift: <?php echo htmlspecialchars($car['gearshift']); ?></p>
+<p>CV: <?php echo htmlspecialchars($car['cv']); ?></p>
 <p>Price per day: X</p>
+</div>
 </main>
 </body>
+<script src="js/nav.js"></script>
 </html>

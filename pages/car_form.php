@@ -4,6 +4,8 @@ include("../auth/connection.php");
 include("../php/nav.php");
 include("../php/userinfo.php");
 include("../php/carpage_var.php");
+include("../php/changecardetails.php");
+
 
 
 ?>
@@ -38,7 +40,50 @@ include("../php/carpage_var.php");
 </nav>
 
 <main>
+    <div class="car-container">
+        <div class="left-part">
+            <img alt="car image" src="" />
+        </div>
+        <div class="right-part">
+            <form method="POST" action="../php/changecardetails.php">
+                <label for="license_plate_change">License Plate:</label>
+                <input type="text" name="license_plate_change" id="license_plate_change" value="<?= getCarDetail('license_plate') ?>">
 
+                <label for="brand_change">Brand:</label>
+                <input type="text" name="brand_change" id="brand_change" value="<?= getCarDetail('brand') ?>">
+
+                <label for="model_change">Model:</label>
+                <input type="text" name="model_change" id="model_change" value="<?= getCarDetail('model') ?>">
+
+                <label for="segment_change">Segment:</label>
+                <input type="text" name="segment_change" id="segment_change" value="<?= getCarDetail('segment') ?>">
+
+                <label for="fuel_type_change">Fuel Type:</label>
+                <input type="text" name="fuel_type_change" id="fuel_type_change" value="<?= getCarDetail('fuel_type') ?>">
+
+                <label for="seats_change">Seats:</label>
+                <input type="number" name="seats_change" id="seats_change" value="<?= getCarDetail('seats') ?>">
+
+                <label for="year_change">Year:</label>
+                <input type="number" name="year_change" id="year_change" value="<?= getCarDetail('year_from') ?>">
+
+                <label for="gearshift_change">Gearshift:</label>
+                <input type="text" name="gearshift_change" id="gearshift_change" value="<?= getCarDetail('gearshift') ?>">
+
+                <label for="km_change">KM:</label>
+                <input type="number" name="km_change" id="km_change" value="<?= getCarDetail('km') ?>">
+
+                <label for="cv_change">CV:</label>
+                <input type="number" name="cv_change" id="cv_change" value="<?= getCarDetail('cv') ?>">
+
+                <label for="price_per_day_change">Price per Day:</label>
+                <input type="number" name="price_per_day_change" id="price_per_day_change" value="<?= getVariableDetail('price_per_day') ?>">
+
+                <label for="availability_change">Availability:</label>
+                <input type="checkbox" name="availability_change" id="availability_change" <?= getVariableDetail('availability') == 't' ? 'checked' : '' ?>>
+            </form>
+        </div>
+    </div>
 </main>
 
 </body>

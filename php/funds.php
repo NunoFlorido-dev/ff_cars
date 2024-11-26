@@ -1,8 +1,7 @@
 <?php
 session_start();
-include("connection.php");
+include("../auth/connection.php");
 include("definemode.php");
-
 
 if (isset($_POST['add-funds'])) {
     // Get the amount to add and the user email
@@ -35,7 +34,7 @@ if (isset($_POST['add-funds'])) {
                     );
 
                     if ($updateQuery) {
-                        header("location: ../wallet.php");
+                        header("location: ../pages/wallet.php");
                         exit();
                     } else {
                         echo "Error updating balance.";

@@ -1,6 +1,5 @@
 <?php
-include("php/connection.php");
-include("php/definemode.php");
+include("../auth/connection.php");
 
 function changeLeftPart($alternateMode){
     if(!$alternateMode){

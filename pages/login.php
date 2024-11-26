@@ -5,16 +5,16 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="login.css" rel="stylesheet">
+    <link href="../../assets/css/login.css" rel="stylesheet">
     <title>FF.CARS | Sign In Page</title>
 </head>
 <body>
 
 <div id="container_login">
-    <img src="/assets/ff_cars_logo.svg" alt="FF.CARS Logotype" />
+    <img src="/assets/icons/ff_cars_logo.svg" alt="FF.CARS Logotype" />
     <div class="login_container">
         <h1>Log In</h1>
-        <form method="POST" action="../php/register.php">
+        <form method="POST" action="../auth/register.php">
             <div class="email">
                 <label for="email_log">Email:</label> <br/>
                 <input type="email" id="email_log" name="email" placeholder="Add email"> <br/>
@@ -33,10 +33,10 @@
 
 <!--   -->
 <div id="container_register">
-    <img src="/assets/ff_cars_logo.svg" alt="FF.CARS Logotype" />
+    <img src="/assets/icons/ff_cars_logo.svg" alt="FF.CARS Logotype" />
     <div class="login_container">
         <h1>Create Account</h1>
-        <form method="POST" action="../php/register.php">
+        <form method="POST" action="../auth/register.php">
             <div class="username">
                 <label for="username">Username:</label> <br/>
                 <input type="text" id="username" name="username" placeholder="Create username"> <br/>
@@ -58,5 +58,5 @@
     </div>
 </div>
 
-<script src="login.js"></script>
+<script src="../../assets/js/login.js"></script>
 </body>

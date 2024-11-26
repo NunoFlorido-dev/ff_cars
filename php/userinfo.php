@@ -51,3 +51,4 @@ function fetchBalance($email) {
 
     return null;
 }
+

@@ -4,7 +4,7 @@ global $connection;
 use PgSql\Result;
 
 session_start();
-include("php/connection.php");
+include("auth/connection.php");
 include("php/definemode.php");
 include("php/userinfo.php");
 include("php/gentools.php");
@@ -64,8 +64,8 @@ $currentSort = $_GET['sort'] ?? null;
         <meta name="viewport"
               content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link rel="stylesheet" href="css/nav.css">
-        <link rel="stylesheet" href="css/index.css">
+        <link rel="stylesheet" href="../assets/css/nav.css">
+        <link rel="stylesheet" href="../assets/css/index.css">
         <link href="https://fonts.cdnfonts.com/css/zt-talk" rel="stylesheet">
         <link href="https://fonts.cdnfonts.com/css/satoshi" rel="stylesheet">
         <title>FF.Cars | Homepage</title>
@@ -73,13 +73,13 @@ $currentSort = $_GET['sort'] ?? null;
     <body>
     <nav>
         <div class="top-nav">
-            <a class="homepage-link-nav" href="index.php"><img alt="ff.cars logotype" src="../assets/ff_cars_logo.svg" /></a>
+            <a class="homepage-link-nav" href="index.php"><img alt="ff.cars logotype" src="../assets/icons/ff_cars_logo.svg" /></a>
             <?php if (isset($_SESSION['username'])): ?>
             <div class="nav-right-container">
                 <?= renderNavLinks($GLOBALS['alternateMode']); ?>
                 <p class="username-checkout-nav"><?= htmlspecialchars(fetchUsername($_SESSION['email'])); ?>
                 </p>
-                <img class="burger-button invisibility nav-mobile" alt="burger menu icon" src="../assets/burger_icon.svg" />
+                <img class="burger-button invisibility nav-mobile" alt="burger menu icon" src="../assets/icons/burger_icon.svg" />
 
             </div>
         </div>
@@ -101,7 +101,7 @@ $currentSort = $_GET['sort'] ?? null;
 
             <div>
                 <button class="search_top_button search-icon" type="submit">
-                    <img src="/assets/search_icon.svg" alt="search icon" />
+                    <img src="/assets/icons/search_icon.svg" alt="search icon" />
                 </button>
             </div>
 
@@ -137,7 +137,7 @@ $currentSort = $_GET['sort'] ?? null;
             $year_from = htmlspecialchars($rows['year_from']);
             $km = htmlspecialchars($rows['km']);
             echo "
-           <a href='car_info.php?license_plate=$license_plate'>
+           <a href='pages/car_info.php?license_plate=$license_plate'>
                     <div class='car_list_part'>
                         <div class='img_wrapper'>Imagem</div>
                         <p class='car_name' >$brand $segment $model</p>
@@ -173,15 +173,15 @@ $currentSort = $_GET['sort'] ?? null;
 
     <form method ="post" class="car_list_page">
         <button type = "submit" name="button1" <?php if($_SESSION["page"]==0){?>disabled<?php }?> class="car_list_page_button">
-            <img src="/assets/ff_cars_left_arrow.svg" alt="left_arrow" />
+            <img src="/assets/icons/ff_cars_left_arrow.svg" alt="left_arrow" />
         </button>
         <p><?php echo $_SESSION["page"]+1 ?></p>
         <button type="submit" name="button2" <?php if($rows != null){if(count($rows) <= $_SESSION["page"]*4+4){?>disabled<?php }}else{?>disabled<?php }?> class="car_list_page_button">
-            <img src="/assets/ff_cars_right_arrow.svg" alt="right_arrow" />
+            <img src="/assets/icons/ff_cars_right_arrow.svg" alt="right_arrow" />
         </button>
     </form>
 
-    <script src="js/nav.js"></script>
+    <script src="../assets/js/nav.js"></script>
     </body>
 <?php
 

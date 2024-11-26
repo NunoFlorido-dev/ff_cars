@@ -63,7 +63,6 @@ $car = pg_fetch_assoc($result);
     <?= changeLeftPart($GLOBALS['alternateMode']);  ?>
     </div>
     </div>
-</div>
 <div class="text">
 <h1><?php echo htmlspecialchars($car['brand']) . " " .  htmlspecialchars($car['segment']) . " " .  htmlspecialchars($car['model']); ?></h1>
 <p>License Plate: <?php echo htmlspecialchars($car['license_plate']); ?></p>
@@ -76,6 +75,7 @@ $car = pg_fetch_assoc($result);
 <p>Gearshift: <?php echo htmlspecialchars($car['gearshift']); ?></p>
 <p>CV: <?php echo htmlspecialchars($car['cv']); ?></p>
 <p>Price per day: X</p>
+</div>
 </div>
 </main>
 </body>

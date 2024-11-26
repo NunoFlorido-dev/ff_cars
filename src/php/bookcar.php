@@ -1,8 +1,8 @@
 <?php
-session_start();
-include("php/connection.php");
-include("php/definemode.php");
+include("connection.php");
+include("definemode.php");
 
-$license_plate = $_POST['license_plate'];
-
-echo $license_plate;
+    if (isset($_POST['license_plate'])) {
+        $license_plate = $_POST['license_plate'];
+        echo "<p>$license_plate</p>";
+    }

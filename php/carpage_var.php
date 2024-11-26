@@ -2,6 +2,8 @@
 include("../auth/connection.php");
 
 function changeLeftPart($alternateMode){
+global $car;
+
     if(!$alternateMode){
         global $car; // Ensure $car is accessible in this scope
         echo '<form method="post" action="php/bookcar.php">
@@ -22,7 +24,8 @@ function changeLeftPart($alternateMode){
     </form>';
     }else{
         echo '<div class="form-link">
-        <a href="car_form.php">Edit</a>
-        </div>';
+    <a href="../pages/car_form.php?license_plate=' . htmlspecialchars($car['license_plate']) . '">Edit</a>
+    </div>';
+
     }
 }

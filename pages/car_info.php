@@ -65,7 +65,7 @@ $car = pg_fetch_assoc($result);
     </div>
     </div>
 <div class="text">
-<h1><?php echo htmlspecialchars($car['brand']) . " car_info.php" .  htmlspecialchars($car['segment']) . " " .  htmlspecialchars($car['model']); ?></h1>
+<h1><?php echo htmlspecialchars($car['brand']) . " " .  htmlspecialchars($car['segment']) . " " .  htmlspecialchars($car['model']); ?></h1>
 <p>License Plate: <?php echo htmlspecialchars($car['license_plate']); ?></p>
 <p>Brand: <?php echo htmlspecialchars($car['brand']); ?></p>
 <p>Segment: <?php echo htmlspecialchars($car['segment']); ?></p>

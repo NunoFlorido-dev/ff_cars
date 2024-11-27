@@ -1,12 +1,6 @@
 <?php
 include("../auth/connection.php");
 
-
-$license_plate = isset($_GET['license_plate']) ? htmlspecialchars($_GET['license_plate']) : null;
-
-if (!$license_plate) {
-    die("License plate is missing.");
-}
 function getCarDetail($carDetail): ?string
 {
     global $connection, $license_plate;
@@ -34,3 +28,11 @@ function getVariableDetail($variableDetail): ?string
         return null;
     }
 }
+
+function updateValues() : void{
+    global $connection, $license_plate;
+
+    echo $license_plate;
+}
+
+updateValues();

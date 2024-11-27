@@ -6,8 +6,7 @@ include("../php/userinfo.php");
 include("../php/carpage_var.php");
 include("../php/changecardetails.php");
 
-
-
+$license_plate = $_POST['license_plate'] ?? null;
 ?>
 
 <!doctype html>
@@ -47,7 +46,7 @@ include("../php/changecardetails.php");
         <div class="right-part">
             <form method="POST" action="../php/changecardetails.php">
                 <label for="license_plate_change">License Plate:</label>
-                <input type="text" name="license_plate_change" id="license_plate_change" value="<?= getCarDetail('license_plate') ?>">
+                <input type="text" name="license_plate_change" id="license_plate_change" value="<?= htmlspecialchars($license_plate ?? '') ?>">
 
                 <label for="brand_change">Brand:</label>
                 <input type="text" name="brand_change" id="brand_change" value="<?= getCarDetail('brand') ?>">
@@ -81,6 +80,8 @@ include("../php/changecardetails.php");
 
                 <label for="availability_change">Availability:</label>
                 <input type="checkbox" name="availability_change" id="availability_change" <?= getVariableDetail('availability') == 't' ? 'checked' : '' ?>>
+
+                <input type="submit" value="Submit">
             </form>
         </div>
     </div>

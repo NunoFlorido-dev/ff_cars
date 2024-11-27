@@ -12,6 +12,8 @@ if (!isset($_GET['license_plate'])) {
 }
 
 $license_plate = pg_escape_literal($GLOBALS['connection'], $_GET['license_plate']);
+
+
 $query = "SELECT * FROM car WHERE license_plate = $license_plate";
 
 $result = pg_query($GLOBALS['connection'], $query);

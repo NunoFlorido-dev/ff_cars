@@ -23,9 +23,11 @@ global $car;
         <button type="submit" id="add-continue">Add to Cart & Continue Search</button>
     </form>';
     }else{
-        echo '<div class="form-link">
-    <a href="../pages/car_form.php?license_plate=' . htmlspecialchars($car['license_plate']) . '">Edit</a>
-    </div>';
+        echo '<form method="post" action="../pages/car_form.php">
+         <input type="hidden" name="license_plate" value="' . htmlspecialchars($car['license_plate']) . '">
+        
+         <button type="submit" id="edit">Edit</button>
+        </form>';
 
     }
 }

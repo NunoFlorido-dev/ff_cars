@@ -1,5 +1,8 @@
 <?php
 session_start();
+$form_data = $_SESSION['form_data'] ?? [];
+unset($_SESSION['form_data']); // Clear session data after use
+
 include("../auth/connection.php");
 include("../php/nav.php");
 include("../php/userinfo.php");

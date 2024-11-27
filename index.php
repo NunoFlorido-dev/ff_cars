@@ -21,7 +21,9 @@ if(isset($_POST['button1'])){
 }
 
 $values = $_GET['search'] ?? null;
+$variableValues = $_GET['search'] ?? null;
 $rows = null;
+$varRows = null;
 
 function getData($connection, $values): Result|false|null
 {
@@ -47,11 +49,34 @@ function getData($connection, $values): Result|false|null
     return null;
 }
 
+function getVariableData($connection, $values): Result|false|null
+{
+
+    if (empty($values)) {
+        $query = "SELECT * FROM car_variables";
+    } else {
+        $query = "SELECT price_per_day FROM car_variables WHERE brand = '$values'";
+    }
+
+    try {
+        return pg_query($connection, $query);
+    } catch (Exception $e) {
+        echo $e->getMessage();
+    }
+
+    return null;
+}
+
 
 
 $values = getData($connection, $values);
 if(pg_num_rows($values) > 0){
     $rows = pg_fetch_all($values);
+}
+
+$variableValues = getData($connection, $variableValues);
+if(pg_num_rows($variableValues) > 0){
+    $varRows = pg_fetch_all($variableValues);
 }
 
 $currentSort = $_GET['sort'] ?? null;
@@ -148,7 +173,7 @@ $currentSort = $_GET['sort'] ?? null;
                             <p>•</p>
                             <p>$fuel_type</p>
                         </div>
-                        <p>X / day</p>
+                        <p></p>
                     </div>
                     </a>";
         }

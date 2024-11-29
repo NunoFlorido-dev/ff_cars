@@ -4,6 +4,7 @@ include("../auth/connection.php");
 include("../php/nav.php");
 include("../php/userinfo.php");
 include("../php/carpage_var.php");
+include("../php/carinfo.php");
 
 
 if (!isset($_GET['license_plate'])) {
@@ -77,7 +78,7 @@ $car = pg_fetch_assoc($result);
 <p>Seats: <?php echo htmlspecialchars($car['seats']); ?></p>
 <p>Gearshift: <?php echo htmlspecialchars($car['gearshift']); ?></p>
 <p>CV: <?php echo htmlspecialchars($car['cv']); ?></p>
-<p>Price per day: X</p>
+<p>Price per day: <?php echo htmlspecialchars(fetchCarPrice($car['license_plate'])); ?> €</p>
 </div>
 </div>
 </main>

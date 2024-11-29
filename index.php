@@ -9,6 +9,7 @@ include("php/definemode.php");
 include("php/userinfo.php");
 include("php/gentools.php");
 include("php/nav.php");
+include("php/carinfo.php");
 
 if(!isset($_SESSION["page"])){
     $_SESSION["page"] = 0;
@@ -161,6 +162,7 @@ $currentSort = $_GET['sort'] ?? null;
             $fuel_type = htmlspecialchars($rows['fuel_type']);
             $year_from = htmlspecialchars($rows['year_from']);
             $km = htmlspecialchars($rows['km']);
+            $price = fetchCarPrice($license_plate); // Fetch the price
             echo "
            <a href='pages/car_info.php?license_plate=$license_plate'>
                     <div class='car_list_part'>
@@ -173,7 +175,7 @@ $currentSort = $_GET['sort'] ?? null;
                             <p>•</p>
                             <p>$fuel_type</p>
                         </div>
-                        <p></p>
+                        <p class='car-price'>$price €</p>
                     </div>
                     </a>";
         }

@@ -1,8 +1,6 @@
 <?php
 include("../auth/connection.php");
 
-
-
 function getCarDetail($carDetail): ?string
 {
     global $connection, $license_plate;

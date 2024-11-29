@@ -1,8 +1,5 @@
 <?php
 session_start();
-$form_data = $_SESSION['form_data'] ?? [];
-unset($_SESSION['form_data']); // Clear session data after use
-
 include("../auth/connection.php");
 include("../php/nav.php");
 include("../php/userinfo.php");
@@ -10,6 +7,9 @@ include("../php/carpage_var.php");
 include("../php/changecardetails.php");
 
 $license_plate = $_POST['license_plate'] ?? null;
+
+$email = $_SESSION['email'];
+
 ?>
 
 <!doctype html>

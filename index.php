@@ -164,7 +164,7 @@ $currentSort = $_GET['sort'] ?? null;
             $km = htmlspecialchars($rows['km']);
             $price = fetchCarPrice($license_plate); // Fetch the price
             echo "
-           <a href='pages/car_info.php?license_plate=$license_plate'>
+           <a href='pages/carpage.php?license_plate=$license_plate'>
                     <div class='car_list_part'>
                         <div class='img_wrapper'>Imagem</div>
                         <p class='car_name' >$brand $segment $model</p>

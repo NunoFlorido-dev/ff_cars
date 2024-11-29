@@ -25,6 +25,9 @@ if (!$result || pg_num_rows($result) === 0) {
 
 $car = pg_fetch_assoc($result);
 
+
+$email = $_SESSION['email'];
+
 ?>
 
 <!DOCTYPE html>

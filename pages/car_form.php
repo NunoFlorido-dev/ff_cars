@@ -20,6 +20,7 @@ $email = $_SESSION['email'];
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../assets/css/nav.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/car_form.css">
     <title>FF.Cars | Car Form</title>
 </head>
 <body>
@@ -42,49 +43,54 @@ $email = $_SESSION['email'];
 </nav>
 
 <main>
+
+    <h2 class ="head-title">Add or Edit an Existing Car</h2>
     <div class="car-container">
         <div class="left-part">
-            <img alt="car image" src="" />
+            <div class="image-placeholder">
+                <p>Car Image</p>
+            </div>
+            <button type="button" class="add-picture">Add Picture</button>
         </div>
+
+        <div class="division"></div>
+
         <div class="right-part">
             <form method="POST" action="../php/changecardetails.php">
                 <label for="license_plate_change">License Plate:</label>
-                <input type="text" name="license_plate_change" id="license_plate_change" value="<?= htmlspecialchars($license_plate ?? '') ?>">
+                <input type="text" placeholder="License Plate..." name="license_plate_change" id="license_plate_change" value="<?= htmlspecialchars($license_plate ?? '') ?>">
 
                 <label for="brand_change">Brand:</label>
-                <input type="text" name="brand_change" id="brand_change" value="<?= getCarDetail('brand') ?>">
+                <input type="text" placeholder="Brand..." name="brand_change" id="brand_change" value="<?= getCarDetail('brand') ?>">
 
                 <label for="model_change">Model:</label>
-                <input type="text" name="model_change" id="model_change" value="<?= getCarDetail('model') ?>">
+                <input type="text" placeholder="Model..." name="model_change" id="model_change" value="<?= getCarDetail('model') ?>">
 
                 <label for="segment_change">Segment:</label>
-                <input type="text" name="segment_change" id="segment_change" value="<?= getCarDetail('segment') ?>">
+                <input type="text" placeholder="Segment..." name="segment_change" id="segment_change" value="<?= getCarDetail('segment') ?>">
 
                 <label for="fuel_type_change">Fuel Type:</label>
-                <input type="text" name="fuel_type_change" id="fuel_type_change" value="<?= getCarDetail('fuel_type') ?>">
+                <input type="text" placeholder="Fuel type..." name="fuel_type_change" id="fuel_type_change" value="<?= getCarDetail('fuel_type') ?>">
 
                 <label for="seats_change">Seats:</label>
-                <input type="number" name="seats_change" id="seats_change" value="<?= getCarDetail('seats') ?>">
+                <input type="number" placeholder="Seats..." name="seats_change" id="seats_change" value="<?= getCarDetail('seats') ?>">
 
                 <label for="year_change">Year:</label>
-                <input type="number" name="year_change" id="year_change" value="<?= getCarDetail('year_from') ?>">
+                <input type="number" placeholder="Year..." name="year_change" id="year_change" value="<?= getCarDetail('year_from') ?>">
 
                 <label for="gearshift_change">Gearshift:</label>
-                <input type="text" name="gearshift_change" id="gearshift_change" value="<?= getCarDetail('gearshift') ?>">
+                <input type="text" placeholder="Gearshift..." name="gearshift_change" id="gearshift_change" value="<?= getCarDetail('gearshift') ?>">
 
                 <label for="km_change">KM:</label>
-                <input type="number" name="km_change" id="km_change" value="<?= getCarDetail('km') ?>">
+                <input type="number" placeholder="KM..." name="km_change" id="km_change" value="<?= getCarDetail('km') ?>">
 
                 <label for="cv_change">CV:</label>
-                <input type="number" name="cv_change" id="cv_change" value="<?= getCarDetail('cv') ?>">
+                <input type="number" placeholder="CV..." name="cv_change" id="cv_change" value="<?= getCarDetail('cv') ?>">
 
-                <label for="price_per_day_change">Price per Day:</label>
-                <input type="number" name="price_per_day_change" id="price_per_day_change" value="<?= getVariableDetail('price_per_day') ?>">
+                <label for="price_per_day_change">Price:</label>
+                <input type="number" placeholder="Price..." name="price_per_day_change" id="price_per_day_change" value="<?= getVariableDetail('price_per_day') ?>">
 
-                <label for="availability_change">Availability:</label>
-                <input type="checkbox" name="availability_change" id="availability_change" <?= getVariableDetail('availability') == 't' ? 'checked' : '' ?>>
-
-                <input type="submit" value="Submit">
+                <input type="submit" value="Submit" class="submit-btn">
             </form>
         </div>
     </div>

@@ -8,6 +8,8 @@ include("../php/changecardetails.php");
 
 $license_plate = $_POST['license_plate'] ?? null;
 
+echo getVariableDetail('price_per_day');
+
 $email = $_SESSION['email'];
 
 ?>

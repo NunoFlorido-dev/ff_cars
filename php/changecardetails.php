@@ -43,7 +43,7 @@ function getVariableDetail($variableDetail): ?string
 {
     global $connection, $license_plate;
 
-    $query = "SELECT $variableDetail FROM car_variables WHERE car_license_plate = $1";
+    $query = "SELECT $variableDetail FROM car_variables WHERE car_license_plate = $1 AND is_latest = true";
     $result = pg_query_params($connection, $query, [$license_plate]);
 
     if ($result && pg_num_rows($result) > 0) {
@@ -69,7 +69,7 @@ function updateValues() : void {
     $km = $_POST['km_change'] ?? 0;
     $cv = $_POST['cv_change'] ?? 0;
     $price_per_day = $_POST['price_per_day_change'] ?? 0;
-    $availability = isset($_POST['availability_change']) ? 't' : 'f';
+    $availability = $_POST['availability_change'] ? 't' : 'f';
     $current_date = date('Y-m-d');  // Proper date format for PostgreSQL
 
     // Check database connection
@@ -85,13 +85,13 @@ function updateValues() : void {
         gearshift = $8, km = $9, cv = $10 
         WHERE license_plate = $11";
 
-    $result = pg_query_params($connection, $car_update_query, [
+    $result_car = pg_query_params($connection, $car_update_query, [
         $license_plate_change, $brand, $model, $segment,
         $fuel_type, $seats, $year, $gearshift,
         $km, $cv, $license_plate_change
     ]);
 
-    if (!$result) {
+    if (!$result_car) {
         echo "Error updating car table: " . pg_last_error($connection);
         exit();
     }

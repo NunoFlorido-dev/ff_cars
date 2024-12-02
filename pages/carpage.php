@@ -5,6 +5,7 @@ include("../php/nav.php");
 include("../php/userinfo.php");
 include("../php/carpage_var.php");
 include("../php/carinfo.php");
+include ("../php/changecardetails.php");
 
 
 if (!isset($_GET['license_plate'])) {

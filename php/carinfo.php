@@ -15,8 +15,9 @@ function fetchCarPrice($license_plate) {
 }
 
 
+
 function fetchChangeDate($license_plate) {
-    $query = pg_query($GLOBALS['connection'], "SELECT change_time FROM car_variables WHERE car_license_plate = '$license_plate'");
+    $query = pg_query($GLOBALS['connection'], "SELECT change_time FROM car_variables WHERE car_license_plate = '$license_plate' AND     is_latest = true");
     if ($query) {
         $row = pg_fetch_array($query);
         return $row['change_time'] ?? null;

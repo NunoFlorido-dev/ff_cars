@@ -9,6 +9,7 @@ include("../php/definemode.php");
 include("../php/nav.php");
 include("../php/userinfo.php");
 include("../php/gentools.php");
+include("../php/carinfo.php");
 
 
 if(!isset($_SESSION["page"])){
@@ -181,7 +182,22 @@ $currentSort = $_GET['sort'] ?? null;
      function extracted($rows): void
      {
          $license_plate = htmlspecialchars($rows['license_plate']);
-         echo "$license_plate";
+         $change_date = fetchChangeDate($license_plate); // Fetch the change date using the function
+
+         echo "<div class='cartool_container'>
+    <div class='cartool_item'>
+        <img alt='car image' />
+        <p class='car_plate'>$license_plate</p>
+        <p class='car_change'>" . htmlspecialchars($change_date) . "</p> 
+        <div class='car_info'>
+   
+           <button><img src='../assets/icons/see.svg' alt='View details' /></button>
+                      <a href='carpage.php?license_plate=$license_plate'>
+ <img src='../assets/icons/arrow.svg' alt='Edit car' /></a> 
+        </div>
+    </div>
+</a>
+</div>";
      }
         if($values != null) {
             if (pg_num_rows($values) > 0) {

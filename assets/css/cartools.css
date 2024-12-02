@@ -168,6 +168,11 @@ main {
     width: 60%;
 }
 
+.cartool_container a{
+    text-decoration: none;
+    color: var(--black);
+}
+
 .cartool_item {
     display: flex;
     align-items: center;
@@ -208,7 +213,8 @@ main {
     gap: 0.5rem;
 }
 
-.car_info button {
+.car_info button,
+.car_info a{
     background-color: #B9EEC3;
     border: none;
     border-radius: 0.25rem;
@@ -223,11 +229,13 @@ main {
     padding: 0;
 }
 
-.car_info button:hover {
+.car_info button:hover,
+.car_info a:hover{
     background-color: #45a049;
 }
 
-.car_info button img {
+.car_info button img,
+.car_info a img{
     width: 1.5rem;
     height: 1.5rem;
 }
@@ -269,7 +277,8 @@ main {
         gap: 1rem;
     }
 
-    .car_info button {
+    .car_info button,
+    .car-info a{
         width: 3rem;
         height: 3rem;
     }
@@ -288,7 +297,8 @@ main {
         font-size: 0.8rem;
     }
 
-    .car_info button {
+    .car_info button,
+    .car-info a{
         width: 2.5rem;
         height: 2.5rem;
     }

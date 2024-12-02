@@ -85,8 +85,24 @@ include("../php/carpage_var.php");
     </div>
 
     <div class="cartool_container">
-        <div class='img_wrapper'>Imagem</div>
-        <p class='car_plate' >$licenseplate</p>
-        <p class='car_change' >Last change: (date) by (admin)</p>
-        <div class='car_info'></div>
+        <?php
+        $licenseplate = "P1-33-5D";
+        $lastChange = "26/10/2024";
+        $admin = "admin";
+        for ($i = 0; $i < 4; $i++): ?>
+        <div class="cartool_item">
+            <div class="img_wrapper">Imagem</div>
+            <p class="car_plate"><?= $licenseplate; ?></p>
+            <p class="car_change">Last change: <?= $lastChange; ?> by <?= $admin; ?></p>
+            <div class="car_info">
+                <button><img src="/assets/icons/see.svg" alt="View details" /></button>
+                <button><img src="/assets/icons/Seta.svg" alt="Edit car" /></button>
+            </div>
+        </div>
+  <?php endfor; ?>
+
     </div>
+</main>
+
+</body>
+</html>

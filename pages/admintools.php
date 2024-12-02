@@ -10,6 +10,7 @@ include("../php/nav.php");
 include("../php/userinfo.php");
 include("../php/gentools.php");
 include("../php/carinfo.php");
+include("../php/changecardetails.php");
 
 
 if(!isset($_SESSION["page"])){
@@ -82,6 +83,8 @@ if(pg_num_rows($variableValues) > 0){
 }
 
 $currentSort = $_GET['sort'] ?? null;
+
+
 
 ?>
 
@@ -177,12 +180,16 @@ $currentSort = $_GET['sort'] ?? null;
         <div class ="add_button">
 
         </div>
+
+        <div class="list-container">
+
         <?php
 
      function extracted($rows): void
      {
          $license_plate = htmlspecialchars($rows['license_plate']);
          $change_date = fetchChangeDate($license_plate); // Fetch the change date using the function
+         $visibility = getVariableDetail('availability');
 
          echo "<div class='cartool_container'>
     <div class='cartool_item'>
@@ -192,8 +199,10 @@ $currentSort = $_GET['sort'] ?? null;
         <div class='car_info'>
    
            <button><img src='../assets/icons/see.svg' alt='View details' /></button>
+           
                       <a href='carpage.php?license_plate=$license_plate'>
  <img src='../assets/icons/arrow.svg' alt='Edit car' /></a> 
+ </a>
         </div>
     </div>
 </a>
@@ -227,6 +236,7 @@ $currentSort = $_GET['sort'] ?? null;
         </form>
 
 
+    </div>
     </div>
 
 </main>

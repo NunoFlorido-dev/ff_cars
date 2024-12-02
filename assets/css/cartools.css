@@ -164,16 +164,26 @@ main {
 .cartool_container {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 3rem;
     width: 60%;
 }
 
-.cartool_container a{
+
+.list-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+}
+
+
+.list-container .cartool_container a{
     text-decoration: none;
     color: var(--black);
 }
 
-.cartool_item {
+.list-container .cartool_item {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -183,7 +193,7 @@ main {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.img_wrapper {
+.list-container .img_wrapper {
     width: 120px;
     height: 80px;
     background-color: #c4c4c4;
@@ -196,25 +206,25 @@ main {
     color: white;
 }
 
-.car_plate {
+.list-container .car_plate {
     font-family: "ZT Talk", sans-serif;
     font-size: 1.2rem;
     font-weight: bold;
 }
 
-.car_change {
+.list-container .car_change {
     font-family: "Satoshi", sans-serif;
     font-size: 0.9rem;
     color: #2B2B2E;
 }
 
-.car_info {
+.list-container .car_info {
     display: flex;
     gap: 0.5rem;
 }
 
-.car_info button,
-.car_info a{
+.list-container .car_info button,
+.list-container .car_info a{
     background-color: #B9EEC3;
     border: none;
     border-radius: 0.25rem;
@@ -229,24 +239,24 @@ main {
     padding: 0;
 }
 
-.car_info button:hover,
-.car_info a:hover{
+.list-container .car_info button:hover,
+.list-container .car_info a:hover{
     background-color: #45a049;
 }
 
-.car_info button img,
-.car_info a img{
+.list-container .car_info button img,
+.list-container .car_info a img{
     width: 1.5rem;
     height: 1.5rem;
 }
 
 @media (max-width: 768px) {
-    .cartool_container {
+    .list-container .cartool_container {
         width: 90%;
         gap: 1rem;
     }
 
-    .cartool_item {
+    .list-container .cartool_item {
         flex-direction: column;
         justify-items: center;
         align-items: center;
@@ -255,64 +265,64 @@ main {
         padding: 1rem;
     }
 
-    .img_wrapper {
+    .list-container .img_wrapper {
         width: 60px;
         height: 60px;
         margin-bottom: 0.5rem;
     }
 
-    .car_plate {
+    .list-container  .car_plate {
         font-size: 1.2rem;
         margin-bottom: 0.25rem;
     }
 
-    .car_change {
+    .list-container  .car_change {
         font-size: 0.9rem;
         margin-bottom: 0.5rem;
     }
 
-    .car_info {
+    .list-container  .car_info {
         width: 100%;
         justify-content: center;
         gap: 1rem;
     }
 
-    .car_info button,
-    .car-info a{
+    .list-container  .car_info button,
+    .list-container .car-info a{
         width: 3rem;
         height: 3rem;
     }
 }
 
 @media (max-width: 480px) {
-    .cartool_item {
+    .list-container  .cartool_item {
         padding: 0.75rem;
     }
 
-    .car_plate {
+    .list-container .car_plate {
         font-size: 1rem;
     }
 
-    .car_change {
+    .list-container  .car_change {
         font-size: 0.8rem;
     }
 
-    .car_info button,
-    .car-info a{
+    .list-container  .car_info button,
+    .list-container  .car-info a{
         width: 2.5rem;
         height: 2.5rem;
     }
 }
 
 
-.car_list_page{
+.list-container .car_list_page{
     display: flex;
     flex-direction: row;
     align-items: center;
     font-family: "Satoshi", sans-serif;
 }
 
-.car_list_page_button{
+.list-container .car_list_page_button{
     margin: 2rem;
     font-family: "Satoshi", sans-serif;
     background: none;
@@ -325,6 +335,6 @@ main {
     cursor: pointer;
 }
 
-.car_list_page_button img {
+.list-container .car_list_page_button img {
     width: 2rem;
 }

@@ -59,7 +59,8 @@ include("../php/gentools.php");
     </div>
 
     <div class="cars-page-cont">
-<p>cars</p>
+
+
     </div>
 
 </main>

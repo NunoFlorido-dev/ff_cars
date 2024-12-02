@@ -97,5 +97,5 @@ $email = $_SESSION['email'];
 </main>
 
 </body>
-<script src="../assets/js/nav.js"
+<script src="../assets/js/nav.js"></script>
 </html>

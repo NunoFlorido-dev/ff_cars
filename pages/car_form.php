@@ -84,7 +84,10 @@ $email = $_SESSION['email'];
                 <input type="number" name="price_per_day_change" id="price_per_day_change" value="<?= getVariableDetail('price_per_day') ?>">
 
                 <label for="availability_change">Availability:</label>
-                <input type="checkbox" name="availability_change" id="availability_change" <?= getVariableDetail('availability') == 't' ? 'checked' : '' ?>>
+                <input type="checkbox" name="availability_change" id="availability_change"
+                    <?= getVariableDetail('availability') ? 'checked' : '' ?>>
+
+
 
                 <input type="submit" value="Submit">
             </form>

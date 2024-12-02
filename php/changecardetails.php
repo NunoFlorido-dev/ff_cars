@@ -39,19 +39,29 @@ function getCarDetail($carDetail): ?string
     }
 }
 
-function getVariableDetail($variableDetail): ?string
-{
+function getVariableDetail($variableDetail) {
     global $connection, $license_plate;
 
     $query = "SELECT $variableDetail FROM car_variables WHERE car_license_plate = $1";
     $result = pg_query_params($connection, $query, [$license_plate]);
 
     if ($result && pg_num_rows($result) > 0) {
-        return htmlspecialchars(pg_fetch_result($result, 0, 0));
+        $value = pg_fetch_result($result, 0, 0);
+
+        // Check if value is 't' or 'f' and convert to boolean
+        if ($value === 't') {
+            return true;
+        } elseif ($value === 'f') {
+            return false;
+        } else {
+            return htmlspecialchars($value);  // Return as a string
+        }
     } else {
         return null;
     }
 }
+
+
 
 function updateValues() : void {
     global $connection;
@@ -111,7 +121,7 @@ function updateValues() : void {
                              VALUES ($1, $2, $3, $4, $5, true)";
 
     $result = pg_query_params($connection, $insert_history_query, [
-        $price_per_day, $availability, $current_date, $id, $license_plate_change
+        (int)$price_per_day, $availability, $current_date, $id, $license_plate_change
     ]);
     if (!$result) {
         echo "Error inserting new history record: " . pg_last_error($connection);

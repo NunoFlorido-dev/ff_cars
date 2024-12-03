@@ -171,15 +171,16 @@ $currentSort = $_GET['sort'] ?? null;
 
         if($values != null) {
             if (pg_num_rows($values) > 0) {
-                if (count($rows) >= $_SESSION["page"] * 4 + 4) {
-                    for ($i = $_SESSION["page"] * 4; $i < $_SESSION["page"] * 4 + 4; $i++) {
+                if (count($rows) >= $_SESSION["page"] * 6 + 6) {
+                    for ($i = $_SESSION["page"] * 6; $i < $_SESSION["page"] * 6 + 6; $i++) {
                         extracted($rows[$i]);
                     }
                 } else {
-                    for ($i = $_SESSION["page"] * 4; $i < count($rows); $i++) {
+                    for ($i = $_SESSION["page"] * 6; $i < count($rows); $i++) {
                         extracted($rows[$i]);
                     }
                 }
+
 
             } else {
                 echo "<p>No cars found for this search</p>";
@@ -189,7 +190,7 @@ $currentSort = $_GET['sort'] ?? null;
     </div>
 
     <form method ="post" class="car_list_page">
-        <button type = "submit" name="button1" <?php if($_SESSION["page"]==0){?>disabled<?php }?> class="car_list_page_button">
+        <button type="submit" name="button1" <?php if($_SESSION["page"]==0){?>disabled<?php }?> class="car_list_page_button">
             <img src="/assets/icons/ff_cars_left_arrow.svg" alt="left_arrow" />
         </button>
         <p><?php echo $_SESSION["page"]+1 ?></p>

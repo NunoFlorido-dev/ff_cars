@@ -40,7 +40,6 @@ include("../php/bookingticket.php");
 </nav>
 
 <main>
-    <?php echo test(); ?>
 </main>
 
 </body>

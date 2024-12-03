@@ -1,14 +1,13 @@
 <?php
 function changeLeftPart($alternateMode){
 global $car;
-    global $license_plate;
-
     if(!$alternateMode){
-        global $car; // Ensure $car is accessible in this scope
         global $license_plate;
+        global $id;
 
         echo '<form method="post" action="php/bookingticket.php">
-        <input type="hidden" name="license_plate" value="' . $license_plate . '">
+        <input type="hidden" name="license_plate" value="' . htmlspecialchars($license_plate) . '">
+        <input type="hidden" name="id" value="' . htmlspecialchars($id) . '">
 
         <div class="dates">
             <label for="begin-time">Begin Time</label>
@@ -23,14 +22,14 @@ global $car;
         <br>
         <button type="submit" id="add-continue">Add to Cart & Continue Search</button>
     </form>';
-    }else{
+    } else {
         echo '<form method="post" action="../pages/car_form.php">
          <input type="hidden" name="license_plate" value="' . htmlspecialchars($car['license_plate']) . '">
         
          <button type="submit" id="edit">Edit</button>
-        </form>';
-
+    </form>';
     }
+
 }
 
 

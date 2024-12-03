@@ -1,12 +1,16 @@
 <?php
-include("../php/definemode.php");
-include("../php/userinfo.php");
-include("../php/stats.php");
-include("../php/pageitems.php");
-
 global $connection;
 
 use PgSql\Result;
+
+session_start();
+include("../auth/connection.php");
+include("../php/definemode.php");
+include("../php/pageitems.php");
+include("../php/userinfo.php");
+include("../php/carinfo.php");
+include("../php/stats.php");
+
 
 if(!isset($_SESSION["page"])){
     $_SESSION["page"] = 0;
@@ -23,49 +27,43 @@ $variableValues = $_GET['search'] ?? null;
 $rows = null;
 $varRows = null;
 
-function getCombinedData($connection, $values, $type = 'car'): ?Result
+function getData($connection, $values): Result|false|null
 {
     $sortField = $_GET['sort'] ?? null;
     $allowedSortFields = ['segment', 'km', 'seats', 'year_from', 'gearshift', 'model', 'fuel_type', 'brand'];
 
-    // Base query based on type ('car' or 'car_variables')
-    if ($type === 'car') {
-        $query = empty($values) ? "SELECT * FROM car" : "SELECT * FROM car WHERE brand = $1";
-    } elseif ($type === 'car_variables') {
-        $query = empty($values) ? "SELECT * FROM car_variables" : "SELECT price_per_day FROM car_variables WHERE car_license_plate IN (SELECT license_plate FROM car WHERE brand = $1)";
+    if (empty($values)) {
+        $query = "SELECT * FROM car";
     } else {
-        echo "Invalid query type specified.";
-        return null;
+        $query = "SELECT * FROM car WHERE brand = '$values'";
     }
 
-    // Add sorting for 'car' data
-    if ($type === 'car' && $sortField && in_array($sortField, $allowedSortFields)) {
+    if ($sortField && in_array($sortField, $allowedSortFields)) {
         $query .= " ORDER BY $sortField ASC";
     }
 
     try {
-        // Use parameters only if $values is set
-        return empty($values) ? pg_query($connection, $query) : pg_query_params($connection, $query, [$values]);
+        return pg_query($connection, $query);
     } catch (Exception $e) {
-        echo "Error: " . $e->getMessage();
+        echo $e->getMessage();
     }
 
     return null;
 }
 
-// Fetch data from the 'car' table
-$carResults = getCombinedData($connection, $values, 'car');
-if ($carResults && pg_num_rows($carResults) > 0) {
-    $rows = pg_fetch_all($carResults);
+
+$values = getData($connection, $values);
+if(pg_num_rows($values) > 0){
+    $rows = pg_fetch_all($values);
 }
 
-// Fetch data from the 'car_variables' table
-$carVariableResults = getCombinedData($connection, $variableValues, 'car_variables');
-if ($carVariableResults && pg_num_rows($carVariableResults) > 0) {
-    $varRows = pg_fetch_all($carVariableResults);
+$variableValues = getData($connection, $variableValues);
+if(pg_num_rows($variableValues) > 0){
+    $varRows = pg_fetch_all($variableValues);
 }
 
 $currentSort = $_GET['sort'] ?? null;
+
 
 
 ?>
@@ -81,6 +79,7 @@ $currentSort = $_GET['sort'] ?? null;
     <link rel="stylesheet" href="../assets/css/admintools.css">
     <link href="https://fonts.cdnfonts.com/css/zt-talk" rel="stylesheet">
     <link href="https://fonts.cdnfonts.com/css/satoshi" rel="stylesheet">
+
     <title>FF.Cars | Admin Tools</title>
 </head>
 <body>
@@ -121,6 +120,8 @@ $currentSort = $_GET['sort'] ?? null;
     </div>
 
     <div class="cars-page-cont">
+
+
         <div class="search">
             <form class="search_top" action= "<?php ?>" method="GET">
 
@@ -156,7 +157,7 @@ $currentSort = $_GET['sort'] ?? null;
         </div>
 
         <div class ="add_button">
-
+          <button><img src="../assets/icons/plus_icon.svg" alt="plus icon"></button>
         </div>
 
         <div class="list-container">
@@ -169,7 +170,7 @@ $currentSort = $_GET['sort'] ?? null;
                 $change_date = fetchChangeDate($license_plate); // Fetch the change date using the function
 
                 echo "<div class='cartool_container'>
-    <div class='cartool_item'>
+         <div class='cartool_item'>
         <img alt='car image' />
         <p class='car_plate'>$license_plate</p>
         <p class='car_change'>" . htmlspecialchars($change_date) . "</p> 
@@ -214,10 +215,11 @@ $currentSort = $_GET['sort'] ?? null;
 
 
         </div>
-
     </div>
 
 </main>
+
+
 
 <script src="../assets/js/nav.js"></script>
 <script src="../assets/js/admintools.js"></script>

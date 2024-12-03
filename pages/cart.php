@@ -5,6 +5,7 @@ include("../php/definemode.php");
 include("../php/userinfo.php");
 include("../php/stats.php");
 include("../php/pageitems.php");
+include("../php/bookingticket.php");
 ?>
 
 
@@ -39,6 +40,7 @@ include("../php/pageitems.php");
 </nav>
 
 <main>
+    <?php echo test(); ?>
 </main>
 
 </body>

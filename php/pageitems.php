@@ -1,12 +1,14 @@
 <?php
-
 function changeLeftPart($alternateMode){
 global $car;
+    global $license_plate;
 
     if(!$alternateMode){
         global $car; // Ensure $car is accessible in this scope
-        echo '<form method="post" action="php/bookcar.php">
-        <input type="hidden" name="license_plate" value="' . htmlspecialchars($car['license_plate']) . '">
+        global $license_plate;
+
+        echo '<form method="post" action="php/bookingticket.php">
+        <input type="hidden" name="license_plate" value="' . $license_plate . '">
 
         <div class="dates">
             <label for="begin-time">Begin Time</label>

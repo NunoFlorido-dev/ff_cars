@@ -1,4 +1,7 @@
 <?php
+
+use JetBrains\PhpStorm\NoReturn;
+
 include(__DIR__ . '/../auth/connection.php');
 
 global $connection;
@@ -108,7 +111,7 @@ function fetchAvailability($license_plate): ?bool
     return $row['availability'] === 't';
 }
 
-function updateValues() : void {
+#[NoReturn] function updateValues() : void {
     global $connection;
     global $id;
 
@@ -151,13 +154,12 @@ function updateValues() : void {
         exit();
     }
 
-    // Step 2: Update the last entry's is_latest to false
+    // Step 2: Update all entries' is_latest to false
     $update_latest_query = "UPDATE car_variables SET is_latest = false 
-                            WHERE car_license_plate = $1 AND is_latest = true";
-
-    $result = pg_query_params($connection, $update_latest_query, [$license_plate_change]);
+                            WHERE is_latest = true";  // Removed the specific car filter
+    $result = pg_query_params($connection, $update_latest_query, []);
     if (!$result) {
-        echo "Error updating latest record: " . pg_last_error($connection);
+        echo "Error updating latest records: " . pg_last_error($connection);
         exit();
     }
 
@@ -186,6 +188,30 @@ function updateValues() : void {
     // Redirect to the car form page
     header("Location: ../pages/car_form.php");
     exit();
+}
+
+
+function toggleAvailability(): void
+{
+    global $connection;
+    if (isset($_POST['availability_change']) && isset($_POST['license_plate'])) {
+        $license_plate = $_POST['license_plate'];
+        $currentAvailability = fetchAvailability($license_plate);
+
+        // Toggle the availability (true becomes false, false becomes true)
+        $newAvailability = ($currentAvailability) ? 'f' : 't';
+
+        // Update the availability in the database
+        $updateQuery = "UPDATE car_variables SET availability = '$newAvailability' WHERE car_license_plate = '$license_plate'";
+        $updateResult = pg_query($connection, $updateQuery);
+
+        if ($updateResult) {
+            echo "Availability updated successfully.";
+        } else {
+            echo "Failed to update availability.";
+        }
+    }
+
 }
 
 // Only call updateValues() if the form is submitted via POST

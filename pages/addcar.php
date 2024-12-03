@@ -10,6 +10,7 @@ include("../php/carinfo.php");
 $license_plate = $_POST['license_plate'] ?? null;
 
 $email = $_SESSION['email'];
+$id = fetchID($email);
 
 ?>
 
@@ -49,7 +50,9 @@ $email = $_SESSION['email'];
             <img alt="car image" src="" />
         </div>
         <div class="right-part">
-            <form method="POST" action="../php/carinfo.php">
+            <form method="POST" action="../php/add.php">
+                <input type="hidden" name="id" id="id" value="<?= $id ?>">
+
                 <label for="license_plate_change">License Plate:</label>
                 <input type="text" name="license_plate_change" id="license_plate_change" value="<?= htmlspecialchars($license_plate ?? '') ?>">
 
@@ -93,9 +96,6 @@ $email = $_SESSION['email'];
 </main>
 
 <script src="../assets/js/nav.js"></script>
-
-
-
 
 </body>
 </html>

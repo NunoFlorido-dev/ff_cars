@@ -156,9 +156,9 @@ $currentSort = $_GET['sort'] ?? null;
 
         </div>
 
-        <div class ="add_button">
+        <a href="addcar.php" class ="add_button">
           <button><img src="../assets/icons/plus_icon.svg" alt="plus icon"></button>
-        </div>
+        </a>
 
         <div class="list-container">
 

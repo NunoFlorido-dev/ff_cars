@@ -50,25 +50,6 @@ function getData($connection, $values): Result|false|null
     return null;
 }
 
-function getVariableData($connection, $values): Result|false|null
-{
-
-    if (empty($values)) {
-        $query = "SELECT * FROM car_variables";
-    } else {
-        $query = "SELECT price_per_day FROM car_variables WHERE brand = '$values'";
-    }
-
-    try {
-        return pg_query($connection, $query);
-    } catch (Exception $e) {
-        echo $e->getMessage();
-    }
-
-    return null;
-}
-
-
 
 $values = getData($connection, $values);
 if(pg_num_rows($values) > 0){
@@ -162,23 +143,32 @@ $currentSort = $_GET['sort'] ?? null;
             $fuel_type = htmlspecialchars($rows['fuel_type']);
             $year_from = htmlspecialchars($rows['year_from']);
             $km = htmlspecialchars($rows['km']);
-            $price = fetchCarPrice($license_plate); // Fetch the price
+            $price = fetchCarPrice($license_plate);
+            $availability = fetchAvailability($license_plate); // Returns true or false
+
+            // Conditional class and href handling
+            $linkClass = $availability ? '' : ' unavailable';
+            $linkHref = $availability ? "href='pages/carpage.php?license_plate=$license_plate'" : 'javascript:void(0)';
+            $availabilityText = $availability ? '' : '<p class="unavailable-text">Unavailable</p>';
+
             echo "
-           <a href='pages/carpage.php?license_plate=$license_plate'>
-                    <div class='car_list_part'>
-                        <div class='img_wrapper'>Imagem</div>
-                        <p class='car_name' >$brand $segment $model</p>
-                        <div class='car_info'>
-                            <p>$year_from</p>
-                            <p>•</p>
-                            <p>$km</p>
-                            <p>•</p>
-                            <p>$fuel_type</p>
-                        </div>
-                        <p class='car-price'>$price €</p>
-                    </div>
-                    </a>";
+    <a $linkHref class='car_link$linkClass'>
+        <div class='car_list_part'>
+            <div class='img_wrapper'>Imagem</div>
+            <p class='car_name'>$brand $segment $model</p>
+            <div class='car_info'>
+                <p>$year_from</p>
+                <p>•</p>
+                <p>$km</p>
+                <p>•</p>
+                <p>$fuel_type</p>
+            </div>
+            <p class='car-price'>$price €</p>
+            $availabilityText
+        </div>
+    </a>";
         }
+
         if($values != null) {
             if (pg_num_rows($values) > 0) {
                 if (count($rows) >= $_SESSION["page"] * 4 + 4) {

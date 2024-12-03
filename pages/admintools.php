@@ -65,15 +65,7 @@ if(pg_num_rows($variableValues) > 0){
 $currentSort = $_GET['sort'] ?? null;
 
 
-// Redirect to the same page after form submission
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['availability_change'])) {
-    $license_plate = $_POST['license_plate']; // Get the license_plate from the form
-    toggleAvailability($license_plate); // Call the function from carinfo.php
 
-    // Redirect to the same page
-    header('Location: ' . $_SERVER['PHP_SELF']);
-    exit(); // Make sure the script stops executing after the redirect
-}
 ?>
 
 <!doctype html>
@@ -176,7 +168,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['availability_change']
             {
                 $license_plate = htmlspecialchars($rows['license_plate']);
                 $change_date = fetchChangeDate($license_plate); // Fetch the change date using the function
-                $available = fetchAvailability($license_plate) ? 'true' : 'false';
 
 
                 echo "<div class='cartool_container'>
@@ -185,12 +176,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['availability_change']
             <p class='car_plate'>" . htmlspecialchars($license_plate) . "</p>
             <p class='car_change'>" . htmlspecialchars($change_date) . "</p> 
             <div class='car_info'>
-                <form action='" . htmlspecialchars($_SERVER['PHP_SELF']) . "' method='POST'>
-                    <input type='hidden' name='license_plate' value='" . htmlspecialchars($license_plate) . "' />
-                    <button type='submit' name='availability_change' id='availability_change'>
-                        <img src='../assets/icons/see.svg' alt='View details' />
-                    </button>
-                </form>
                 
                 <a href='carpage.php?license_plate=" . urlencode($license_plate) . "'>
                     <img src='../assets/icons/arrow.svg' alt='Edit car' />
@@ -198,8 +183,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['availability_change']
             </div>
         </div>
     </div>";
-
-                echo $available ;
 
             }
 

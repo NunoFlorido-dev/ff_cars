@@ -178,3 +178,13 @@ body{
     margin-top: 0.25rem;
     font-size: 1.25rem;
 }
+
+.car_link.unavailable {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.unavailable-text {
+    color: red;
+    font-weight: bold;
+}

@@ -86,30 +86,22 @@ function fetchChangeDate($license_plate) {
     return null;
 }
 
-function fetchAvailability($license_plate): ?bool
-{
-    // Sanitize input using pg_query_params to prevent SQL injection
-    $query = pg_query_params(
-        $GLOBALS['connection'],
-        "SELECT availability FROM car_variables WHERE car_license_plate = $1",
-        array($license_plate)
-    );
+function fetchAvailability(string $license_plate): bool {
+    global $connection;
 
-    if (!$query) {
-        // Log the error or handle failure
-        error_log("Query failed: " . pg_last_error($GLOBALS['connection']));
-        return null;
+    $query = "SELECT availability FROM car_variables WHERE car_license_plate = $1 AND is_latest = true";
+    $result = pg_query_params($connection, $query, [$license_plate]);
+
+    if ($result) {
+        $row = pg_fetch_assoc($result);
+        if ($row) {
+            // Convert 't' or 'f' to true or false
+            return $row['availability'] === 't';
+        }
     }
-
-    $row = pg_fetch_assoc($query);
-    if ($row === false) {
-        // No results found
-        return null;
-    }
-
-    // Return availability as a boolean (true for 't', false for 'f')
-    return $row['availability'] === 't';
+    return false; // Default to false if not found
 }
+
 
 #[NoReturn] function updateValues() : void {
     global $connection;
@@ -154,16 +146,16 @@ function fetchAvailability($license_plate): ?bool
         exit();
     }
 
-    // Step 2: Update all entries' is_latest to false
+    // Step 2: Update all entries' is_latest to false for the car
     $update_latest_query = "UPDATE car_variables SET is_latest = false 
-                            WHERE is_latest = true";  // Removed the specific car filter
-    $result = pg_query_params($connection, $update_latest_query, []);
+                            WHERE car_license_plate = $1";
+    $result = pg_query_params($connection, $update_latest_query, [$license_plate_change]);
     if (!$result) {
         echo "Error updating latest records: " . pg_last_error($connection);
         exit();
     }
 
-    // Step 3: Insert a new record with is_latest = true for the new values
+    // Step 3: Insert a new record with the updated values and is_latest = true
     $insert_history_query = "INSERT INTO car_variables (price_per_day, availability, change_time, admin_user_web_id, car_license_plate, is_latest) 
                              VALUES ($1, $2, $3, $4, $5, true)";
 
@@ -175,7 +167,7 @@ function fetchAvailability($license_plate): ?bool
         exit();
     }
 
-    // Step 4: Optionally update the current state if needed
+    // Step 4: Optionally update the current state if needed (you can skip this if no further updates are needed)
     $update_current_variables_query = "UPDATE car_variables SET price_per_day = $1, availability = $2 
                                        WHERE car_license_plate = $3 AND is_latest = true";
     $result = pg_query_params($connection, $update_current_variables_query, [$price_per_day, $availability, $license_plate_change]);
@@ -188,30 +180,6 @@ function fetchAvailability($license_plate): ?bool
     // Redirect to the car form page
     header("Location: ../pages/car_form.php");
     exit();
-}
-
-
-function toggleAvailability(): void
-{
-    global $connection;
-    if (isset($_POST['availability_change']) && isset($_POST['license_plate'])) {
-        $license_plate = $_POST['license_plate'];
-        $currentAvailability = fetchAvailability($license_plate);
-
-        // Toggle the availability (true becomes false, false becomes true)
-        $newAvailability = ($currentAvailability) ? 'f' : 't';
-
-        // Update the availability in the database
-        $updateQuery = "UPDATE car_variables SET availability = '$newAvailability' WHERE car_license_plate = '$license_plate'";
-        $updateResult = pg_query($connection, $updateQuery);
-
-        if ($updateResult) {
-            echo "Availability updated successfully.";
-        } else {
-            echo "Failed to update availability.";
-        }
-    }
-
 }
 
 // Only call updateValues() if the form is submitted via POST

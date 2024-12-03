@@ -66,6 +66,7 @@ $currentSort = $_GET['sort'] ?? null;
 
 
 
+
 ?>
 
 <!doctype html>
@@ -168,23 +169,32 @@ $currentSort = $_GET['sort'] ?? null;
             {
                 $license_plate = htmlspecialchars($rows['license_plate']);
                 $change_date = fetchChangeDate($license_plate); // Fetch the change date using the function
+                $available = fetchAvailability($license_plate) ? 'true' : 'false';
+
+
+                echo $available ;
+
 
                 echo "<div class='cartool_container'>
-         <div class='cartool_item'>
-        <img alt='car image' />
-        <p class='car_plate'>$license_plate</p>
-        <p class='car_change'>" . htmlspecialchars($change_date) . "</p> 
-        <div class='car_info'>
-   
-           <button><img src='../assets/icons/see.svg' alt='View details' /></button>
-           
-                      <a href='carpage.php?license_plate=$license_plate'>
- <img src='../assets/icons/arrow.svg' alt='Edit car' /></a> 
- </a>
+        <div class='cartool_item'>
+            <img alt='car image' />
+            <p class='car_plate'>$license_plate</p>
+            <p class='car_change'>" . htmlspecialchars($change_date) . "</p> 
+            <div class='car_info'>
+            
+                <form action='" . $_SERVER['PHP_SELF'] . "' method='POST'>
+                    <button type='submit' name='availability_change' id='availability_change'>
+                        <img src='../assets/icons/see.svg' alt='View details' />
+                    </button>
+                </form>
+                    
+                <a href='carpage.php?license_plate=$license_plate'>
+                    <img src='../assets/icons/arrow.svg' alt='Edit car' />
+                </a>
+            </div>
         </div>
-    </div>
-</a>
-</div>";
+      </div>";
+
             }
             if($values != null) {
                 if (pg_num_rows($values) > 0) {
@@ -223,6 +233,7 @@ $currentSort = $_GET['sort'] ?? null;
 
 <script src="../assets/js/nav.js"></script>
 <script src="../assets/js/admintools.js"></script>
+<script src="../assets/js/availablestyle.js"></script>
 
 
 </body>

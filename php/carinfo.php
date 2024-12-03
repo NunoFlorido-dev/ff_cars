@@ -21,7 +21,6 @@ if (empty($email)) {
 }
 
 // Continue with the rest of your code
-include_once("carinfo.php");
 include_once("userinfo.php");
 
 $id = fetchID($email);
@@ -84,6 +83,30 @@ function fetchChangeDate($license_plate) {
     return null;
 }
 
+function fetchAvailability($license_plate): ?bool
+{
+    // Sanitize input using pg_query_params to prevent SQL injection
+    $query = pg_query_params(
+        $GLOBALS['connection'],
+        "SELECT availability FROM car_variables WHERE car_license_plate = $1",
+        array($license_plate)
+    );
+
+    if (!$query) {
+        // Log the error or handle failure
+        error_log("Query failed: " . pg_last_error($GLOBALS['connection']));
+        return null;
+    }
+
+    $row = pg_fetch_assoc($query);
+    if ($row === false) {
+        // No results found
+        return null;
+    }
+
+    // Return availability as a boolean (true for 't', false for 'f')
+    return $row['availability'] === 't';
+}
 
 function updateValues() : void {
     global $connection;

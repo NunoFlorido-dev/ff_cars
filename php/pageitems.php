@@ -1,5 +1,39 @@
 <?php
-function renderNavLinks($alternateMode) {
+
+function changeLeftPart($alternateMode){
+global $car;
+
+    if(!$alternateMode){
+        global $car; // Ensure $car is accessible in this scope
+        echo '<form method="post" action="php/bookcar.php">
+        <input type="hidden" name="license_plate" value="' . htmlspecialchars($car['license_plate']) . '">
+
+        <div class="dates">
+            <label for="begin-time">Begin Time</label>
+            <input type="date" id="begin-time" name="begin-time">
+
+            <label for="end-time">End Time</label>
+            <input type="date" id="end-time" name="end-time">
+        </div>
+
+        <br>
+        <button type="submit" id="add-pay" formaction="cart.php">Add to Cart & Pay</button>
+        <br>
+        <button type="submit" id="add-continue">Add to Cart & Continue Search</button>
+    </form>';
+    }else{
+        echo '<form method="post" action="../pages/car_form.php">
+         <input type="hidden" name="license_plate" value="' . htmlspecialchars($car['license_plate']) . '">
+        
+         <button type="submit" id="edit">Edit</button>
+        </form>';
+
+    }
+}
+
+
+function renderNavLinks($alternateMode)
+{
     if (!$alternateMode) {
         return '
             <a class="cart-link-nav normal-nav" href="pages/cart.php"> <img alt="cart icon" src="/assets/icons/cart_icon.svg" /></a>
@@ -14,14 +48,15 @@ function renderNavLinks($alternateMode) {
     }
 }
 
-function renderNavLinksResponsive($alternateMode){
-    if(!$alternateMode){
+function renderNavLinksResponsive($alternateMode)
+{
+    if (!$alternateMode) {
         return '<div class="mobile-nav invisibility nav-responsive">
                 <a class="cart-link-nav">Cart</a>
                 <a class="wallet-link-nav" href="pages/wallet.php">Wallet</a>
                 <a class="user-link-nav" href="pages/user.php">User</a>
                 </div>';
-    }else{
+    } else {
         return '<div class="mobile-nav invisibility nav-responsive">
                 <a class="key-link-nav" href="pages/admintools.php">Admin Tools</a>
                 <a class="user-link-nav" href="pages/user.php">User</a>
@@ -29,7 +64,8 @@ function renderNavLinksResponsive($alternateMode){
     }
 }
 
-function renderNavLinksWithin($alternateMode) {
+function renderNavLinksWithin($alternateMode)
+{
     if (!$alternateMode) {
         return '
             <a class="cart-link-nav normal-nav" href="cart.php"> <img alt="cart icon" src="/assets/icons/cart_icon.svg" /></a>
@@ -44,14 +80,15 @@ function renderNavLinksWithin($alternateMode) {
     }
 }
 
-function renderNavLinksResponsiveWithin($alternateMode){
-    if(!$alternateMode){
+function renderNavLinksResponsiveWithin($alternateMode)
+{
+    if (!$alternateMode) {
         return '<div class="mobile-nav invisibility nav-responsive">
                 <a class="cart-link-nav" href="cart.php">Cart</a>
                 <a class="wallet-link-nav" href="wallet.php">Wallet</a>
                 <a class="user-link-nav" href="user.php">User</a>
                 </div>';
-    }else{
+    } else {
         return '<div class="mobile-nav invisibility nav-responsive">
                 <a class="key-link-nav" href="admintools.php">Admin Tools</a>
                 <a class="user-link-nav" href="user.php">User</a>

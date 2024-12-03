@@ -1,10 +1,10 @@
 <?php
 session_start();
 include("../auth/connection.php");
-include("../php/nav.php");
+include("../php/definemode.php");
 include("../php/userinfo.php");
-include("../php/carpage_var.php");
-include("../php/changecardetails.php");
+include("../php/stats.php");
+include("../php/pageitems.php");
 
 $license_plate = $_POST['license_plate'] ?? null;
 
@@ -48,7 +48,7 @@ $email = $_SESSION['email'];
             <img alt="car image" src="" />
         </div>
         <div class="right-part">
-            <form method="POST" action="../php/changecardetails.php">
+            <form method="POST" action="../php/carinfo.php">
                 <label for="license_plate_change">License Plate:</label>
                 <input type="text" name="license_plate_change" id="license_plate_change" value="<?= htmlspecialchars($license_plate ?? '') ?>">
 

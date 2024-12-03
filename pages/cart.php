@@ -1,10 +1,10 @@
 <?php
 session_start();
 include("../auth/connection.php");
-include("../php/nav.php");
+include("../php/definemode.php");
 include("../php/userinfo.php");
-include("../php/carpage_var.php");
-include("../php/bookcar.php");
+include("../php/stats.php");
+include("../php/pageitems.php");
 ?>
 
 

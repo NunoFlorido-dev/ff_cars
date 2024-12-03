@@ -5,6 +5,7 @@ include("../php/definemode.php");
 include("../php/userinfo.php");
 include("../php/stats.php");
 include("../php/pageitems.php");
+include("../php/carinfo.php");
 
 
 if (!isset($_GET['license_plate'])) {
@@ -81,7 +82,7 @@ $email = $_SESSION['email'];
 <p>Seats: <?php echo htmlspecialchars($car['seats']); ?></p>
 <p>Gearshift: <?php echo htmlspecialchars($car['gearshift']); ?></p>
 <p>CV: <?php echo htmlspecialchars($car['cv']); ?></p>
-<p>Price per day: <?php echo htmlspecialchars(fetchCarPrice($car['license_plate'])); ?> €</p>
+<p>Price per day: <?php echo fetchCarPrice($car['license_plate']); ?> €</p>
 </div>
 </div>
 </main>

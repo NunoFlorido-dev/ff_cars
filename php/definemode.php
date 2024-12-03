@@ -1,5 +1,7 @@
 <?php
 
+global $connection;
+
 $alternateMode = null;
 
 if ($GLOBALS['connection']) {

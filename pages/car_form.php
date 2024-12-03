@@ -5,6 +5,7 @@ include("../php/definemode.php");
 include("../php/userinfo.php");
 include("../php/stats.php");
 include("../php/pageitems.php");
+include("../php/carinfo.php");
 
 $license_plate = $_POST['license_plate'] ?? null;
 

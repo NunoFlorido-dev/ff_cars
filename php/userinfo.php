@@ -1,5 +1,8 @@
 <?php
 include("definemode.php");
+include(__DIR__ . '/../auth/connection.php');
+
+global $connection;
 
 function fetchUsername($email) {
     $query = pg_query($GLOBALS['connection'], "SELECT username FROM user_web WHERE email = '$email'");

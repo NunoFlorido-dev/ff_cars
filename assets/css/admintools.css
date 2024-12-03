@@ -410,3 +410,8 @@ main{
 
 
 }
+
+.search_buttons{
+    display: flex;
+    gap: 1rem;
+}

@@ -29,6 +29,7 @@ $varRows = null;
 function getData($connection, $values): Result|false|null
 {
     $sortField = $_GET['sort'] ?? null;
+    $order = $_GET['order'] ?? 'ASC';  // Default to ascending if no order is specified
     $allowedSortFields = ['segment', 'km', 'seats', 'year_from', 'gearshift', 'model', 'fuel_type', 'brand'];
 
     if (empty($values)) {
@@ -37,8 +38,9 @@ function getData($connection, $values): Result|false|null
         $query = "SELECT * FROM car WHERE brand = '$values'";
     }
 
+    // Check if the sort field is valid and apply the sort order (ASC or DESC)
     if ($sortField && in_array($sortField, $allowedSortFields)) {
-        $query .= " ORDER BY $sortField ASC";
+        $query .= " ORDER BY $sortField $order";
     }
 
     try {
@@ -49,7 +51,6 @@ function getData($connection, $values): Result|false|null
 
     return null;
 }
-
 
 $values = getData($connection, $values);
 if(pg_num_rows($values) > 0){
@@ -99,36 +100,110 @@ $currentSort = $_GET['sort'] ?? null;
     <p class="title">Find the best cars to rent!</p>
 
     <div class="search">
-        <form class="search_top" action= "<?php htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="GET">
-
+        <form class="search_top" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="GET">
             <label for="name"></label>
             <input class="search_top_textinput" type="text" id="name" name="search" placeholder="Search car..."
                    value="<?php echo htmlspecialchars($_GET['search'] ?? ''); ?>" />
             <input type="hidden" name="sort" value="<?php echo htmlspecialchars($_GET['sort'] ?? ''); ?>" />
 
-            <div>
+            <!-- This toggles the sorting order -->
+            <input type="hidden" name="order" value="<?php echo (($_GET['order'] ?? 'ASC') === 'ASC') ? 'DESC' : 'ASC'; ?>" />
+
+            <div class="search_buttons">
                 <button class="search_top_button search-icon" type="submit">
                     <img src="/assets/icons/search_icon.svg" alt="search icon" />
                 </button>
             </div>
-
         </form>
 
         <div class="search_bottom">
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="GET">
                 <input type="hidden" name="search" value="<?php echo htmlspecialchars($_GET['search'] ?? ''); ?>" />
-                <button class="search_bottom_button segment-button <?php echo $currentSort === 'segment' ? 'active' : ''; ?>" name="sort" value="segment">Segment</button>
-                <button class="search_bottom_button km-button <?php echo $currentSort === 'km' ? 'active' : ''; ?>" name="sort" value="km">KM</button>
-                <button class="search_bottom_button seats-button <?php echo $currentSort === 'seats' ? 'active' : ''; ?>" name="sort" value="seats">NºSeats</button>
-                <button class="search_bottom_button year-button <?php echo $currentSort === 'year_from' ? 'active' : ''; ?>" name="sort" value="year_from">Year</button>
-                <button class="search_bottom_button gearshift-button <?php echo $currentSort === 'gearshift' ? 'active' : ''; ?>" name="sort" value="gearshift">Gearshift</button>
-                <button class="search_bottom_button model-button <?php echo $currentSort === 'model' ? 'active' : ''; ?>" name="sort" value="model">Model</button>
-                <button class="search_bottom_button fuel-button <?php echo $currentSort === 'fuel_type' ? 'active' : ''; ?>" name="sort" value="fuel_type">Fuel Type</button>
-                <button class="search_bottom_button brand-button <?php echo $currentSort === 'brand' ? 'active' : ''; ?>" name="sort" value="brand">Brand</button>
-                <button class="search_bottom_button brand-button <?php echo $currentSort === 'cv' ? 'active' : ''; ?>" name="sort" value="brand">CV</button>
+                <input type="hidden" name="order" value="<?php echo ($_GET['order'] ?? 'ASC') === 'ASC' ? 'DESC' : 'ASC'; ?>" />
 
+                <!-- Segment Button -->
+                <button class="search_bottom_button segment-button <?php echo $currentSort === 'segment' ? 'active' : ''; ?>"
+                        name="sort" value="segment">
+                    Segment
+                    <?php if ($currentSort === 'segment') { ?>
+                        <span><?php echo ($_GET['order'] ?? 'ASC') === 'ASC' ? '↑' : '↓'; ?></span>
+                    <?php } ?>
+                </button>
+
+                <!-- KM Button -->
+                <button class="search_bottom_button km-button <?php echo $currentSort === 'km' ? 'active' : ''; ?>"
+                        name="sort" value="km">
+                    KM
+                    <?php if ($currentSort === 'km') { ?>
+                        <span><?php echo ($_GET['order'] ?? 'ASC') === 'ASC' ? '↑' : '↓'; ?></span>
+                    <?php } ?>
+                </button>
+
+                <!-- Seats Button -->
+                <button class="search_bottom_button seats-button <?php echo $currentSort === 'seats' ? 'active' : ''; ?>"
+                        name="sort" value="seats">
+                    Nº Seats
+                    <?php if ($currentSort === 'seats') { ?>
+                        <span><?php echo ($_GET['order'] ?? 'ASC') === 'ASC' ? '↑' : '↓'; ?></span>
+                    <?php } ?>
+                </button>
+
+                <!-- Year Button -->
+                <button class="search_bottom_button year-button <?php echo $currentSort === 'year_from' ? 'active' : ''; ?>"
+                        name="sort" value="year_from">
+                    Year
+                    <?php if ($currentSort === 'year_from') { ?>
+                        <span><?php echo ($_GET['order'] ?? 'ASC') === 'ASC' ? '↑' : '↓'; ?></span>
+                    <?php } ?>
+                </button>
+
+                <!-- Gearshift Button -->
+                <button class="search_bottom_button gearshift-button <?php echo $currentSort === 'gearshift' ? 'active' : ''; ?>"
+                        name="sort" value="gearshift">
+                    Gearshift
+                    <?php if ($currentSort === 'gearshift') { ?>
+                        <span><?php echo ($_GET['order'] ?? 'ASC') === 'ASC' ? '↑' : '↓'; ?></span>
+                    <?php } ?>
+                </button>
+
+                <!-- Model Button -->
+                <button class="search_bottom_button model-button <?php echo $currentSort === 'model' ? 'active' : ''; ?>"
+                        name="sort" value="model">
+                    Model
+                    <?php if ($currentSort === 'model') { ?>
+                        <span><?php echo ($_GET['order'] ?? 'ASC') === 'ASC' ? '↑' : '↓'; ?></span>
+                    <?php } ?>
+                </button>
+
+                <!-- Fuel Type Button -->
+                <button class="search_bottom_button fuel-button <?php echo $currentSort === 'fuel_type' ? 'active' : ''; ?>"
+                        name="sort" value="fuel_type">
+                    Fuel Type
+                    <?php if ($currentSort === 'fuel_type') { ?>
+                        <span><?php echo ($_GET['order'] ?? 'ASC') === 'ASC' ? '↑' : '↓'; ?></span>
+                    <?php } ?>
+                </button>
+
+                <!-- CV Button -->
+                <button class="search_bottom_button cv-button <?php echo $currentSort === 'cv' ? 'active' : ''; ?>"
+                        name="sort" value="cv">
+                    CV
+                    <?php if ($currentSort === 'cv') { ?>
+                        <span><?php echo ($_GET['order'] ?? 'ASC') === 'ASC' ? '↑' : '↓'; ?></span>
+                    <?php } ?>
+                </button>
+
+                <!-- Brand Button -->
+                <button class="search_bottom_button brand-button <?php echo $currentSort === 'brand' ? 'active' : ''; ?>"
+                        name="sort" value="brand">
+                    Brand
+                    <?php if ($currentSort === 'brand') { ?>
+                        <span><?php echo ($_GET['order'] ?? 'ASC') === 'ASC' ? '↑' : '↓'; ?></span>
+                    <?php } ?>
+                </button>
             </form>
         </div>
+
 
     </div>
 

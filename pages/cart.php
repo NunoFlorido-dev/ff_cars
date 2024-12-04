@@ -3,12 +3,12 @@ session_start();  // Start the session
 
 // Make sure that no output is sent before this
 include("../auth/connection.php");
-include("../php/definemode.php");
-include("../php/userinfo.php");
-include("../php/carinfo.php");
-include("../php/stats.php");
 include("../php/pageitems.php");
 include("../php/bookingticket.php");
+
+$email = $_SESSION['email'];
+$balance = (int)fetchBalance($email);
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['set_session'])) {
     $_SESSION['booking_ticket'] = [
@@ -19,8 +19,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['set_session'])) {
     ];
 }
 
-// Check if the ticket exists in the session
+// Check if the ticketexists in the session
 $ticket = $_SESSION['booking_ticket'] ?? null;
+
+$car_price = (int)fetchCarPrice($ticket['license_plate']);
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_booking']) && $ticket) {
     $license_plate = $ticket['license_plate'];
@@ -28,9 +31,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_booking']) &&
     $begin_time = $ticket['begin_time'];
     $end_time = $ticket['end_time'];
 
+if($balance >= $car_price){
+    removeBalance($email, $car_price);
     // Call your booking function
     createBookingTicket($license_plate, $id, $begin_time, $end_time);
-
+    }else{
+    echo "Not enough funds";
+}
     // Clear the session after successful booking
     unset($_SESSION['booking_ticket']);  // Removes only the booking_ticket session variable
     // Or, if you want to clear all session variables, you can use:
@@ -42,6 +49,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_booking']) &&
     // Redirect to another page (e.g., homepage)
     header("Location: ../index.php");
 }
+
+
 ?>
 
 
@@ -76,16 +85,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_booking']) &&
     <?php if ($ticket): ?>
         <div class="ticket-container">
             <h2>Booking Ticket Summary</h2>
+            <p><?= fetchBrand(htmlspecialchars($ticket['license_plate'])); ?> <?= fetchSegment(htmlspecialchars($ticket['license_plate'])); ?>
+                <?= fetchModel(htmlspecialchars($ticket['license_plate'])); ?></p>
             <p>License Plate: <?= htmlspecialchars($ticket['license_plate']); ?></p>
             <p>User ID: <?= htmlspecialchars($ticket['id']); ?></p>
             <p>Begin Time: <?= htmlspecialchars($ticket['begin_time']); ?></p>
             <p>End Time: <?= htmlspecialchars($ticket['end_time']); ?></p>
-            <p><?= fetchCarPrice(htmlspecialchars($ticket['license_plate'])); ?></p>
+            <p><?= fetchCarPrice(htmlspecialchars($ticket['license_plate'])); ?> €</p>
             <form action="cart.php" method="POST">
                 <input type="hidden" name="confirm_booking" value="1">
                 <button type="submit">Confirm Booking</button>
             </form>
         </div>
+       <div class="pay">
+           <p><?= $car_price ?> €</p>
+           <p><?= $balance ?> €</p>
+       </div>
     <?php else: ?>
         <p>No items in the cart.</p>
     <?php endif; ?>

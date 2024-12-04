@@ -47,6 +47,48 @@ function getCarDetail($carDetail): ?string
         return null;
     }
 }
+function fetchBrand($license_plate) {
+    $query = pg_query_params(
+        $GLOBALS['connection'],
+        "SELECT brand FROM car WHERE license_plate = $1",
+        [$license_plate]
+    );
+
+    if ($query && pg_num_rows($query) > 0) {
+        $row = pg_fetch_array($query);
+        return $row['brand'] ?? null;
+    }
+    return null;
+}
+
+function fetchSegment($license_plate) {
+    $query = pg_query_params(
+        $GLOBALS['connection'],
+        "SELECT segment FROM car WHERE license_plate = $1",
+        [$license_plate]
+    );
+
+    if ($query && pg_num_rows($query) > 0) {
+        $row = pg_fetch_array($query);
+        return $row['segment'] ?? null;
+    }
+    return null;
+}
+
+function fetchModel($license_plate) {
+    $query = pg_query_params(
+        $GLOBALS['connection'],
+        "SELECT model FROM car WHERE license_plate = $1",
+        [$license_plate]
+    );
+
+    if ($query && pg_num_rows($query) > 0) {
+        $row = pg_fetch_array($query);
+        return $row['model'] ?? null;
+    }
+    return null;
+}
+
 
 function getVariableDetail($variableDetail): ?string
 {

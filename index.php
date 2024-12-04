@@ -229,7 +229,7 @@ $currentSort = $_GET['sort'] ?? null;
             echo "
     <a $linkHref class='car_link$linkClass'>
         <div class='car_list_part'>
-            <div class='img_wrapper'>Imagem</div>
+            <div class='img_wrapper'><img alt='car image'></div>
             <p class='car_name'>$brand $segment $model</p>
             <div class='car_info'>
                 <p>$year_from</p>
@@ -275,6 +275,7 @@ $currentSort = $_GET['sort'] ?? null;
     </form>
 
     <script src="assets/js/nav.js"></script>
+    <script src="assets/js/carimages.js"></script>
     </body>
 <?php
 

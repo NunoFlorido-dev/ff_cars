@@ -104,6 +104,7 @@ function getVariableDetail($variableDetail): ?string
     }
 }
 
+
 function fetchCarPrice($license_plate) {
     $query = pg_query_params(
         $GLOBALS['connection'],

@@ -3,6 +3,7 @@
 use JetBrains\PhpStorm\NoReturn;
 
 include(__DIR__ . '/../auth/connection.php');
+include('../php/carinfo.php');
 
 global $connection;
 if (!$connection) {
@@ -21,17 +22,13 @@ function trimString($string): string
     return is_string($string) ? trim($string, "'") : '';
 }
 
-// Check if form values are set before using them
-$license_plate = isset($_POST['license_plate']) ? trimString($_POST['license_plate']) : '';
-$id = $_POST['id'] ?? '';
-$begin_time = $_POST['begin-time'] ?? '';
-$end_time = $_POST['end-time'] ?? '';
 
 // You can print and debug the values to make sure they are properly populated
 
-#[NoReturn] function createBookingTicket(): void
+
+#[NoReturn] function createBookingTicket($license_plate, $id, $begin_time, $end_time): void
 {
-    global $license_plate, $id, $begin_time, $end_time, $connection;
+    global $connection;
 
     // Check for empty or invalid data and handle accordingly
     if (empty($license_plate) || empty($id) || empty($begin_time) || empty($end_time)) {
@@ -59,13 +56,8 @@ $end_time = $_POST['end-time'] ?? '';
         echo "Successfully booked a car!";
     }
 
-    header("Location: ../pages/cart.php");
+    header("Location: ../index.php");
     exit();
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    createBookingTicket();
-}
-
 ?>
-}

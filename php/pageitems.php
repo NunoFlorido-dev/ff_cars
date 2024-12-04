@@ -6,9 +6,11 @@ global $car;
         global $id;
 
         echo  <<<HTML
-    <form method="post" action="php/bookingticket.php">
+    <form method="post" action="../pages/cart.php">
         <input type="hidden" name="license_plate" value="{$license_plate}">
         <input type="hidden" name="id" value="{$id}">
+         <input type="hidden" name="set_session" value="1">
+
 
         <div class="dates">
             <label for="begin-time">Begin Time</label>

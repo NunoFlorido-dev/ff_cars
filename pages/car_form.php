@@ -11,6 +11,12 @@ $license_plate = $_POST['license_plate'] ?? null;
 
 $email = $_SESSION['email'];
 
+// Only call updateValues() if the form is submitted via POST
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['license_plate_change'])) {
+    updateValues();
+}
+
+
 ?>
 
 <!doctype html>
@@ -49,7 +55,7 @@ $email = $_SESSION['email'];
             <img alt="car image" src="" />
         </div>
         <div class="right-part">
-            <form method="POST" action="../php/carinfo.php">
+            <form method="POST" action="<?= $_SERVER['PHP_SELF'];  ?>">
                 <label for="license_plate_change">License Plate:</label>
                 <input type="text" name="license_plate_change" id="license_plate_change" value="<?= htmlspecialchars($license_plate ?? '') ?>">
 

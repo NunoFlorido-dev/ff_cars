@@ -182,8 +182,3 @@ function fetchAvailability(string $license_plate): bool {
     exit();
 }
 
-// Only call updateValues() if the form is submitted via POST
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['license_plate_change'])) {
-    updateValues();
-}
-

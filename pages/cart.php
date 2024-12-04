@@ -19,10 +19,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['set_session'])) {
     ];
 }
 
-// Check if the ticketexists in the session
+// Check if the ticket exists in the session
 $ticket = $_SESSION['booking_ticket'] ?? null;
 
-$car_price = (int)fetchCarPrice($ticket['license_plate']);
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_booking']) && $ticket) {
@@ -30,8 +29,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_booking']) &&
     $id = $ticket['id'];
     $begin_time = $ticket['begin_time'];
     $end_time = $ticket['end_time'];
+    $car_price = (int)fetchCarPrice($ticket['license_plate']);
 
-if($balance >= $car_price){
+
+    if($balance >= $car_price){
     removeBalance($email, $car_price);
     // Call your booking function
     createBookingTicket($license_plate, $id, $begin_time, $end_time);

@@ -23,7 +23,7 @@ main{
     flex-direction: column;
     width: 40%;
     height: auto;
-    border: 2px solid var(--blue);
+    box-shadow: 0 0 5px 2px rgb(224, 224, 224);
     border-radius: 2rem;
     padding: 2rem;
     gap: 1.25rem;

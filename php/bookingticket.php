@@ -4,7 +4,6 @@ use JetBrains\PhpStorm\NoReturn;
 
 include(__DIR__ . '/../auth/connection.php');
 
-
 global $connection;
 if (!$connection) {
     echo "Database connection failed.";
@@ -16,28 +15,29 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();  // Start session if not already started
 }
 
-$license_plate = $_POST['license_plate'];
-$id = $_POST['id'];
-$begin_time = $_POST['begin-time'];
-$end_time = $_POST['end-time'];
-
-function test(){
-    global $license_plate;
-    global $id;
-    global $begin_time;
-    global $end_time;
-    $result = $license_plate . $id . $begin_time . $end_time;
-    var_dump($license_plate);
-    echo $result;
+// Function to safely trim a string and ensure it's not null
+function trimString($string): string
+{
+    return is_string($string) ? trim($string, "'") : '';
 }
 
-function createBookingTicket(){
-    global $license_plate;
-    global $id;
-    global $begin_time;
-    global $end_time;
-    global $connection;
-    echo $id;
+// Check if form values are set before using them
+$license_plate = isset($_POST['license_plate']) ? trimString($_POST['license_plate']) : '';
+$id = $_POST['id'] ?? '';
+$begin_time = $_POST['begin-time'] ?? '';
+$end_time = $_POST['end-time'] ?? '';
+
+// You can print and debug the values to make sure they are properly populated
+
+#[NoReturn] function createBookingTicket(): void
+{
+    global $license_plate, $id, $begin_time, $end_time, $connection;
+
+    // Check for empty or invalid data and handle accordingly
+    if (empty($license_plate) || empty($id) || empty($begin_time) || empty($end_time)) {
+        echo "Error: Missing required fields.";
+        exit();
+    }
 
     // Check database connection
     if (!$connection) {
@@ -55,15 +55,17 @@ function createBookingTicket(){
     if (!$result) {
         echo "Error inserting new history record: " . pg_last_error($connection);
         exit();
-    }else{
+    } else {
         echo "Successfully booked a car!";
     }
 
     header("Location: ../pages/cart.php");
     exit();
-
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST'){
-    test();
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    createBookingTicket();
+}
+
+?>
 }

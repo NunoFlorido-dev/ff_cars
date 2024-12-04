@@ -5,9 +5,10 @@ global $car;
         global $license_plate;
         global $id;
 
-        echo '<form method="post" action="php/bookingticket.php">
-        <input type="hidden" name="license_plate" value="' . htmlspecialchars($license_plate) . '">
-        <input type="hidden" name="id" value="' . htmlspecialchars($id) . '">
+        echo  <<<HTML
+    <form method="post" action="php/bookingticket.php">
+        <input type="hidden" name="license_plate" value="{$license_plate}">
+        <input type="hidden" name="id" value="{$id}">
 
         <div class="dates">
             <label for="begin-time">Begin Time</label>
@@ -21,7 +22,9 @@ global $car;
         <button type="submit" id="add-pay" formaction="cart.php">Add to Cart & Pay</button>
         <br>
         <button type="submit" id="add-continue">Add to Cart & Continue Search</button>
-    </form>';
+    </form>
+HTML;
+;
     } else {
         echo '<form method="post" action="../pages/car_form.php">
          <input type="hidden" name="license_plate" value="' . htmlspecialchars($car['license_plate']) . '">

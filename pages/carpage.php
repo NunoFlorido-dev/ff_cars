@@ -66,7 +66,10 @@ $email = $_SESSION['email'];
 <main>
 <div class="car-container">
 <div class="left-part">
-<img alt="car image" src="" />
+    <div class="image_container">
+<img class="car_image" alt="car image" src="" />
+    </div>
+
     <div class="variable_part">
     <?= changeLeftPart($GLOBALS['alternateMode']);  ?>
     </div>
@@ -88,4 +91,5 @@ $email = $_SESSION['email'];
 </main>
 </body>
 <script src="../assets/js/nav.js"></script>
+<script src="../assets/js/carimages.js"></script>
 </html>

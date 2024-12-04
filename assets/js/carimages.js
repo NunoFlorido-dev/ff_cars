@@ -21,7 +21,7 @@ displayImages(imageContainers, imageArray);
 
 
 
-const imageContainersAdmin = document.querySelectorAll(".cartool_container .image_container .car_image");
+const imageContainersAdmin = document.querySelectorAll(".image_container .car_image");
 
 function displayImagesAdmin(containers, images){
 

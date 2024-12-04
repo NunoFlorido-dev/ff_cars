@@ -99,7 +99,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_booking']) &&
             </form>
         </div>
        <div class="pay">
-           <p><?= $car_price ?> €</p>
+           <p><?php if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_booking']) && $ticket){
+               echo $car_price; }?> </p>
            <p><?= $balance ?> €</p>
        </div>
     <?php else: ?>

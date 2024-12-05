@@ -129,20 +129,20 @@ function fetchChangeDate($license_plate) {
     return null;
 }
 
-function fetchAvailability(string $license_plate): bool {
+function fetchAvailability($license_plate): bool {
     global $connection;
+    $current_date = date('Y-m-d H:i:s');
 
-    $query = "SELECT availability FROM car_variables WHERE car_license_plate = $1 AND is_latest = true";
-    $result = pg_query_params($connection, $query, [$license_plate]);
+    $query = "SELECT 1 FROM booking_ticket 
+              WHERE car_license_plate = $1 
+              AND begin_time <= $2 
+              AND end_time >= $2 
+              LIMIT 1";
 
-    if ($result) {
-        $row = pg_fetch_assoc($result);
-        if ($row) {
-            // Convert 't' or 'f' to true or false
-            return $row['availability'] === 't';
-        }
-    }
-    return false; // Default to false if not found
+    $result = pg_query_params($connection, $query, [$license_plate, $current_date]);
+
+    // Return false if a booking is found, true otherwise
+    return !(pg_num_rows($result) > 0);
 }
 
 

@@ -64,6 +64,17 @@ if(pg_num_rows($variableValues) > 0){
 
 $currentSort = $_GET['sort'] ?? null;
 
+$current_date = date('Y-m-d H:i:s'); // Get current date and time
+
+$availability_query = "SELECT 1 FROM booking_ticket 
+                       WHERE car_license_plate = $1 
+                       AND begin_time <= $2 
+                       AND end_time >= $2 
+                       LIMIT 1";
+
+
+
+
 ?>
     <!doctype html>
     <html lang="en">
@@ -227,21 +238,21 @@ $currentSort = $_GET['sort'] ?? null;
             $availabilityText = $availability ? '' : '<p class="unavailable-text">Unavailable</p>';
 
             echo "
-    <a $linkHref class='car_link$linkClass'>
-        <div class='car_list_part'>
-            <div class='img_wrapper'><img alt='car image'></div>
-            <p class='car_name'>$brand $segment $model</p>
-            <div class='car_info'>
-                <p>$year_from</p>
-                <p>•</p>
-                <p>$km</p>
-                <p>•</p>
-                <p>$fuel_type</p>
+        <a $linkHref class='car_link$linkClass'>
+            <div class='car_list_part'>
+                <div class='img_wrapper'><img alt='car image'></div>
+                <p class='car_name'>$brand $segment $model</p>
+                <div class='car_info'>
+                    <p>$year_from</p>
+                    <p>•</p>
+                    <p>$km</p>
+                    <p>•</p>
+                    <p>$fuel_type</p>
+                </div>
+                <p class='car-price'>$price €</p>
+                $availabilityText
             </div>
-            <p class='car-price'>$price €</p>
-            $availabilityText
-        </div>
-    </a>";
+        </a>";
         }
 
         if($values != null) {

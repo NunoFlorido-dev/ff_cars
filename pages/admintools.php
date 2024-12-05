@@ -117,6 +117,16 @@ $currentSort = $_GET['sort'] ?? null;
             <h2>Total Number of Users</h2>
             <?= fetchTotalUserNumber(); ?>
         </div>
+
+        <div class="average-car-price">
+            <h2>Average Car Price</h2>
+            <?= getAverageCarPrice(); ?> €
+        </div>
+
+        <div class="average-car-price">
+            <h2>Total Number of Tickets</h2>
+            <?= getTotalOfTickets(); ?>
+        </div>
     </div>
 
     <div class="cars-page-cont">

@@ -7,6 +7,10 @@ include("../php/stats.php");
 include("../php/pageitems.php");
 
 
+$id = htmlspecialchars(fetchID($_SESSION['email']));
+
+$ticket_query = "SELECT * FROM booking_ticket WHERE client_user_web_id = $1";
+$tickets_result = pg_query_params($GLOBALS['connection'], $ticket_query, [$id]);
 ?>
 
 <!doctype html>
@@ -64,7 +68,7 @@ include("../php/pageitems.php");
 
         <div class="id_cont">
             <h1>ID</h1>
-            <p><?= htmlspecialchars(fetchID($_SESSION['email'])); ?></p>
+            <p><?= $id ?></p>
         </div>
 
         <?= seeIFAdmin(); ?>
@@ -72,6 +76,25 @@ include("../php/pageitems.php");
     </section>
 
     <section class="booking-info">
+    </section>
+
+
+    <section class="user-ticket-history">
+     <h2>Bookings</h2>
+        <?php if ($tickets_result && pg_num_rows($tickets_result) > 0): ?>
+            <ul>
+                <?php while ($ticket = pg_fetch_assoc($tickets_result)): ?>
+                    <li>
+                        <strong>License Plate:</strong> <?php echo htmlspecialchars($ticket['car_license_plate']); ?><br>
+                        <strong>Begin Time:</strong> <?php echo htmlspecialchars($ticket['begin_time']); ?><br>
+                        <strong>End Time:</strong> <?php echo htmlspecialchars($ticket['end_time']); ?><br>
+                    </li>
+                <?php endwhile; ?>
+            </ul>
+        <?php else: ?>
+            <p>No tickets found for this user.</p>
+        <?php endif; ?>
+
     </section>
 
 

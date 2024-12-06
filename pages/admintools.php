@@ -117,6 +117,16 @@ $currentSort = $_GET['sort'] ?? null;
             <h2>Total Number of Users</h2>
             <?= fetchTotalUserNumber(); ?>
         </div>
+
+        <div class="average-car-price">
+            <h2>Average Car Price</h2>
+            <?= getAverageCarPrice(); ?> €
+        </div>
+
+        <div class="average-car-price">
+            <h2>Total Number of Tickets</h2>
+            <?= getTotalOfTickets(); ?>
+        </div>
     </div>
 
     <div class="cars-page-cont">
@@ -242,10 +252,10 @@ $currentSort = $_GET['sort'] ?? null;
                 $license_plate = htmlspecialchars($rows['license_plate']);
                 $change_date = fetchChangeDate($license_plate); // Fetch the change date using the function
 
-
-                echo "<div class='cartool_container'>
+              if($license_plate && $change_date) {
+                  echo "<div class='cartool_container'>
         <div class='cartool_item'>
-            <img alt='car image' />
+           <div class='image_container'><img alt='car image' class='car_image' /></div>
             <p class='car_plate'>" . htmlspecialchars($license_plate) . "</p>
             <p class='car_change'>" . htmlspecialchars($change_date) . "</p> 
             <div class='car_info'>
@@ -256,7 +266,20 @@ $currentSort = $_GET['sort'] ?? null;
             </div>
         </div>
     </div>";
-
+              }else{
+                  echo "<div class='cartool_container'>
+        <div class='cartool_item' class='car_image'>
+           <div class='image_container'><img alt='car image' class='car_image' /></div>
+            <p class='car_plate'>" . htmlspecialchars($license_plate) . "</p>
+            <div class='car_info'>
+                
+                <a href='carpage.php?license_plate=" . urlencode($license_plate) . "'>
+                    <img src='../assets/icons/arrow.svg' alt='Edit car' />
+                </a>
+            </div>
+        </div>
+    </div>";
+              }
             }
 
             if($values != null) {
@@ -297,6 +320,7 @@ $currentSort = $_GET['sort'] ?? null;
 <script src="../assets/js/nav.js"></script>
 <script src="../assets/js/admintools.js"></script>
 <script src="../assets/js/availablestyle.js"></script>
+<script src="../assets/js/carimages.js"></script>
 
 
 </body>

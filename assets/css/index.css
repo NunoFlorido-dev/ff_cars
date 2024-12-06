@@ -133,6 +133,16 @@ body{
     border-radius: 14px;
     background-color: rgb(224, 224, 224);
     margin-bottom: 0.75rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.img_wrapper img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .car_name {

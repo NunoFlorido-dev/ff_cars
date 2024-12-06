@@ -47,6 +47,48 @@ function getCarDetail($carDetail): ?string
         return null;
     }
 }
+function fetchBrand($license_plate) {
+    $query = pg_query_params(
+        $GLOBALS['connection'],
+        "SELECT brand FROM car WHERE license_plate = $1",
+        [$license_plate]
+    );
+
+    if ($query && pg_num_rows($query) > 0) {
+        $row = pg_fetch_array($query);
+        return $row['brand'] ?? null;
+    }
+    return null;
+}
+
+function fetchSegment($license_plate) {
+    $query = pg_query_params(
+        $GLOBALS['connection'],
+        "SELECT segment FROM car WHERE license_plate = $1",
+        [$license_plate]
+    );
+
+    if ($query && pg_num_rows($query) > 0) {
+        $row = pg_fetch_array($query);
+        return $row['segment'] ?? null;
+    }
+    return null;
+}
+
+function fetchModel($license_plate) {
+    $query = pg_query_params(
+        $GLOBALS['connection'],
+        "SELECT model FROM car WHERE license_plate = $1",
+        [$license_plate]
+    );
+
+    if ($query && pg_num_rows($query) > 0) {
+        $row = pg_fetch_array($query);
+        return $row['model'] ?? null;
+    }
+    return null;
+}
+
 
 function getVariableDetail($variableDetail): ?string
 {
@@ -61,6 +103,7 @@ function getVariableDetail($variableDetail): ?string
         return null;
     }
 }
+
 
 function fetchCarPrice($license_plate) {
     $query = pg_query_params(
@@ -86,21 +129,76 @@ function fetchChangeDate($license_plate) {
     return null;
 }
 
-function fetchAvailability(string $license_plate): bool {
+function fetchAvailability($license_plate): bool {
+    global $connection;
+    $current_date = date('Y-m-d H:i:s');
+
+    $query = "SELECT 1 FROM booking_ticket 
+              WHERE car_license_plate = $1 
+              AND begin_time <= $2 
+              AND end_time >= $2 
+              LIMIT 1";
+
+    $result = pg_query_params($connection, $query, [$license_plate, $current_date]);
+
+    // Return false if a booking is found, true otherwise
+    return !(pg_num_rows($result) > 0);
+}
+
+
+function getAverageCarPrice() {
     global $connection;
 
-    $query = "SELECT availability FROM car_variables WHERE car_license_plate = $1 AND is_latest = true";
-    $result = pg_query_params($connection, $query, [$license_plate]);
-
-    if ($result) {
-        $row = pg_fetch_assoc($result);
-        if ($row) {
-            // Convert 't' or 'f' to true or false
-            return $row['availability'] === 't';
-        }
+    if (!$connection) {
+        die("Connection failed: " . pg_last_error());
     }
-    return false; // Default to false if not found
+
+    // SQL query to calculate the average car price
+    $query = "SELECT AVG(price_per_day) AS average_price FROM car_variables";
+    $result = pg_query($connection, $query);
+
+    if (!$result) {
+        die("Query failed: " . pg_last_error());
+    }
+
+    // Fetch the result
+    $row = pg_fetch_assoc($result);
+    $averagePrice = $row['average_price'] ?? 0;
+
+    return number_format($averagePrice, 2, ',', '');
+
 }
+
+
+function getTotalOfTickets() {
+    global $connection;
+
+    if (!$connection) {
+        die("Connection failed: " . pg_last_error());
+    }
+
+    // SQL query to calculate the average car price
+    $query = "SELECT COUNT(id) AS total_of_tickets FROM booking_ticket";
+    $result = pg_query($connection, $query);
+
+    if (!$result) {
+        die("Query failed: " . pg_last_error());
+    }
+
+    // Fetch the result
+    $row = pg_fetch_assoc($result);
+    $total = $row['total_of_tickets'] ?? 0;
+
+    return $total;
+
+}
+
+
+
+
+
+
+
 
 
 #[NoReturn] function updateValues() : void {
@@ -180,10 +278,5 @@ function fetchAvailability(string $license_plate): bool {
     // Redirect to the car form page
     header("Location: ../pages/car_form.php");
     exit();
-}
-
-// Only call updateValues() if the form is submitted via POST
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['license_plate_change'])) {
-    updateValues();
 }
 

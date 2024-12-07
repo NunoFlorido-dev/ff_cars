@@ -37,6 +37,42 @@ flex-direction: column;
     align-items: center;
 }
 
+.history{
+    box-shadow: 0 0 5px 2px rgb(224, 224, 224);
+    border-radius: 1rem;
+    width: 60%;
+    height: auto;
+    margin-top: 4rem;
+    justify-content: space-evenly;
+    flex-direction: row;
+    padding: 2.5rem 2rem 2.5rem 2rem;
+    font-family: "Satoshi", sans-serif;
+    font-size: 1rem;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.ticket-history{
+    margin-bottom: 2rem;
+    margin-left: 2rem;
+}
+
+.tickettitle{
+    font-family: "ZT Talk", sans-serif;
+    font-size: 2rem;
+}
+
+.car-changes-history{
+    margin-left: 2rem;
+}
+
+.carchangestitle{
+    font-family: "ZT Talk", sans-serif;
+    font-size: 2rem;
+}
+
 @media (max-width: 1200px) {
     .car-container {
     gap: 1rem;
@@ -72,3 +108,5 @@ flex-direction: column;
     font-family: "Satoshi", sans-serif;
     font-size: 1.25rem;
 }
+
+

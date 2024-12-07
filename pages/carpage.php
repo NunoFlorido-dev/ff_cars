@@ -93,7 +93,7 @@ $changes_result = pg_query_params($GLOBALS['connection'], $changes_query, [$_GET
 
     <div class="history">
         <div class="ticket-history">
-            <h2>Booking Tickets History</h2>
+            <h2 class ="tickettitle">Booking Tickets History</h2>
             <?php if ($tickets_result && pg_num_rows($tickets_result) > 0): ?>
                 <ul>
                     <?php while ($ticket = pg_fetch_assoc($tickets_result)): ?>
@@ -109,7 +109,7 @@ $changes_result = pg_query_params($GLOBALS['connection'], $changes_query, [$_GET
             <?php endif; ?>
         </div>
         <div class="car-changes-history">
-            <h2>Car Changes History</h2>
+            <h2 class="carchangestitle">Car Changes History</h2>
             <?php if ($changes_result && pg_num_rows($changes_result) > 0): ?>
                 <ul>
                     <?php while ($change = pg_fetch_assoc($changes_result)): ?>

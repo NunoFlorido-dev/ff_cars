@@ -31,7 +31,7 @@ HTML;
         echo '<form method="post" action="../pages/car_form.php">
          <input type="hidden" name="license_plate" value="' . htmlspecialchars($car['license_plate']) . '">
         
-         <button type="submit" id="edit">Edit</button>
+         <button class="editbut" type="submit" id="edit">Edit</button>
     </form>';
     }
 

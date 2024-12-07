@@ -42,7 +42,7 @@ flex-direction: column;
     border-radius: 1rem;
     width: 60%;
     height: auto;
-    margin-top: 4rem;
+    margin-top: 2rem;
     justify-content: space-evenly;
     flex-direction: row;
     padding: 2.5rem 2rem 2.5rem 2rem;
@@ -52,6 +52,25 @@ flex-direction: column;
 
 ul {
     list-style-type: none;
+}
+
+
+.editbut{
+    margin-top: 1rem;
+    padding: 1rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    background-color: #B9EEC3;
+    color: #2B2B2E;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family: "Satoshi", sans-serif;
+    cursor: pointer;
+}
+
+.editbut:hover {
+    background-color: #45a049;
 }
 
 .ticket-history{

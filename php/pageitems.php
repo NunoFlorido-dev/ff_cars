@@ -11,13 +11,20 @@ global $car;
         <input type="hidden" name="id" value="{$id}">
          <input type="hidden" name="set_session" value="1">
 
-
-        <div class="dates">
+<div class = "dates">
+        <div class="begindate">
+        
             <label for="begin-time">Begin Time</label>
+            <div class = "calendar">
             <input type="date" id="begin-time" name="begin-time">
-
+            </div>
+            </div>
+            <div class="enddate">
             <label for="end-time">End Time</label>
+            <div class = "calendar">
             <input type="date" id="end-time" name="end-time">
+            </div>
+        </div>
         </div>
 
         <br>

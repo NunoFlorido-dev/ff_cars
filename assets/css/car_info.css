@@ -57,9 +57,7 @@ ul {
 
 .editbut{
     margin-top: 1rem;
-    padding: 1rem;
-    padding-left: 3rem;
-    padding-right: 3rem;
+    padding: 1rem 3rem;
     background-color: #B9EEC3;
     color: #2B2B2E;
     border: none;

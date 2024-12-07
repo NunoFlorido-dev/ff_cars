@@ -72,3 +72,33 @@ flex-direction: column;
     font-family: "Satoshi", sans-serif;
     font-size: 1.25rem;
 }
+
+.ticket-item {
+    position: relative;
+    padding-left: 30px; /* Adjust to create space for the circle */
+    margin-bottom: 10px;
+}
+
+.ticket-item::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: transparent;
+}
+
+.ticket-item.red-circle::before {
+    background-color: #f06e6e;
+}
+
+.ticket-item.green-circle::before {
+    background-color: #78ed6b;
+}
+
+.ticket-item.yellow-circle::before {
+    background-color: #ebd249;
+}

@@ -96,8 +96,23 @@ $changes_result = pg_query_params($GLOBALS['connection'], $changes_query, [$_GET
             <h2>Booking Tickets History</h2>
             <?php if ($tickets_result && pg_num_rows($tickets_result) > 0): ?>
                 <ul>
-                    <?php while ($ticket = pg_fetch_assoc($tickets_result)): ?>
-                        <li>
+                    <?php
+                    date_default_timezone_set('Europe/Lisbon'); // Replace 'YOUR_TIMEZONE' with your timezone
+                    $current_date = new DateTime();
+                    while ($ticket = pg_fetch_assoc($tickets_result)):
+                        $begin_date = new DateTime($ticket['begin_time']);
+                        $end_date = new DateTime($ticket['end_time']);
+                        $circle_class = '';
+
+                        if ($current_date >= $begin_date && $current_date <= $end_date) {
+                            $circle_class = 'red-circle'; // Current ticket
+                        } elseif ($current_date > $end_date) {
+                            $circle_class = 'green-circle'; // Past ticket
+                        } else {
+                            $circle_class = 'yellow-circle'; // Future ticket
+                        }
+                        ?>
+                        <li class="ticket-item <?= $circle_class; ?>">
                             <strong>ID:</strong> <?php echo htmlspecialchars($ticket['id']); ?><br>
                             <strong>Begin Time:</strong> <?php echo htmlspecialchars($ticket['begin_time']); ?><br>
                             <strong>End Time:</strong> <?php echo htmlspecialchars($ticket['end_time']); ?><br>
@@ -108,23 +123,7 @@ $changes_result = pg_query_params($GLOBALS['connection'], $changes_query, [$_GET
                 <p>No tickets found for this car.</p>
             <?php endif; ?>
         </div>
-        <div class="car-changes-history">
-            <h2>Car Changes History</h2>
-            <?php if ($changes_result && pg_num_rows($changes_result) > 0): ?>
-                <ul>
-                    <?php while ($change = pg_fetch_assoc($changes_result)): ?>
-                        <li>
-                            <strong>ID:</strong> <?php echo htmlspecialchars($change['id']); ?><br>
-                            <strong>Price:</strong> <?php echo htmlspecialchars($change['price_per_day']); ?>€<br>
-                            <strong>Availability:</strong> <?php echo $change['availability'] ? 'Available' : 'Not Available'; ?><br>
-                            <strong>Change date:</strong> <?php echo htmlspecialchars($change['change_time']); ?><br>
-                        </li>
-                    <?php endwhile; ?>
-                </ul>
-            <?php else: ?>
-                <p>No changes found for this car.</p>
-            <?php endif; ?>
-        </div>
+
 
     </div>
 </main>

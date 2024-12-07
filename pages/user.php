@@ -80,7 +80,7 @@ $tickets_result = pg_query_params($GLOBALS['connection'], $ticket_query, [$id]);
 
 
     <section class="user-ticket-history">
-     <h2>Bookings</h2>
+     <h2 class ="bookings" >Bookings</h2>
         <?php if ($tickets_result && pg_num_rows($tickets_result) > 0): ?>
             <ul>
                 <?php while ($ticket = pg_fetch_assoc($tickets_result)): ?>

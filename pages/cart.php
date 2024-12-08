@@ -13,7 +13,7 @@ $balance = (int)fetchBalance($email);
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['set_session'])) {
     $_SESSION['booking_ticket'] = [
         'license_plate' => trimString($_POST['license_plate']),
-        'id' => (int) $_POST['id'],
+        'id' => (int)$_POST['id'],
         'begin_time' => $_POST['begin-time'],
         'end_time' => $_POST['end-time'],
     ];
@@ -21,7 +21,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['set_session'])) {
 
 // Check if the ticket exists in the session
 $ticket = $_SESSION['booking_ticket'] ?? null;
-
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_booking']) && $ticket) {
@@ -32,13 +31,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_booking']) &&
     $car_price = (int)fetchCarPrice($ticket['license_plate']);
 
 
-    if($balance >= $car_price){
-    removeBalance($email, $car_price);
-    // Call your booking function
-    createBookingTicket($license_plate, $id, $begin_time, $end_time);
-    }else{
-    echo "Not enough funds";
-}
+    if ($balance >= $car_price) {
+        removeBalance($email, $car_price);
+        // Call your booking function
+        createBookingTicket($license_plate, $id, $begin_time, $end_time);
+    } else {
+        echo "Not enough funds";
+    }
     // Clear the session after successful booking
     unset($_SESSION['booking_ticket']);  // Removes only the booking_ticket session variable
     // Or, if you want to clear all session variables, you can use:
@@ -55,7 +54,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_booking']) &&
 ?>
 
 
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -69,12 +67,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_booking']) &&
 <body>
 <nav>
     <div class="top-nav">
-        <a class="homepage-link-nav" href="../index.php"><img alt="ff.cars logotype" src="/assets/icons/ff_cars_logo.svg" /></a>
+        <a class="homepage-link-nav" href="../index.php"><img alt="ff.cars logotype"
+                                                              src="/assets/icons/ff_cars_logo.svg"/></a>
         <?php if (isset($_SESSION['username'])): ?>
         <div class="nav-right-container">
             <?= renderNavLinksWithin($GLOBALS['alternateMode']); ?>
             <p class="username-checkout-nav"><?= htmlspecialchars(fetchUsername($_SESSION['email'])); ?></p>
-            <img class="burger-button invisibility nav-mobile" alt="burger menu icon" src="/assets/icons/burger_icon.svg" />
+            <img class="burger-button invisibility nav-mobile" alt="burger menu icon"
+                 src="/assets/icons/burger_icon.svg"/>
         </div>
     </div>
     <div class="bottom-nav">
@@ -85,29 +85,44 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_booking']) &&
 
 <main>
     <?php if ($ticket): ?>
-        <div class="ticket-container">
-            <h2>Booking Ticket Summary</h2>
-            <p><?= fetchBrand(htmlspecialchars($ticket['license_plate'])); ?> <?= fetchSegment(htmlspecialchars($ticket['license_plate'])); ?>
-                <?= fetchModel(htmlspecialchars($ticket['license_plate'])); ?></p>
-            <p>License Plate: <?= htmlspecialchars($ticket['license_plate']); ?></p>
-            <p>User ID: <?= htmlspecialchars($ticket['id']); ?></p>
-            <p>Begin Time: <?= htmlspecialchars($ticket['begin_time']); ?></p>
-            <p>End Time: <?= htmlspecialchars($ticket['end_time']); ?></p>
-            <p><?= fetchCarPrice(htmlspecialchars($ticket['license_plate'])); ?> €</p>
+    <div class="cart_page">
+        <div class="tickets">
+            <div class="ticket-container">
+                <div class='img_wrapper'><img alt='car image'></div>
+                <div class="ticket-container_part">
+                    <div class="car_info_top">
+                        <p><?= fetchBrand(htmlspecialchars($ticket['license_plate'])); ?> <?= fetchSegment(htmlspecialchars($ticket['license_plate'])); ?>
+                            <?= fetchModel(htmlspecialchars($ticket['license_plate'])); ?></p>
+                    </div>
+                    <div class="car_info_mid">
+                        <p><?= htmlspecialchars($ticket['begin_time']); ?></p>
+                    </div>
+                    <div class="car_info_bot">
+                        <div class="car_info_bot_part">
+                            <p><?= fetchCarPrice(htmlspecialchars($ticket['license_plate'])); ?> €</p>
+                            <p><?= htmlspecialchars($ticket['license_plate']); ?></p>
+                        </div>
+                        <p><?= htmlspecialchars($ticket['end_time']); ?></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pay">
+            <p><?php if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_booking']) && $ticket) {
+                    echo $car_price;
+                } ?> </p>
+            <p><?= $balance ?> €</p>
             <form action="cart.php" method="POST">
                 <input type="hidden" name="confirm_booking" value="1">
-                <button type="submit">Confirm Booking</button>
+                <button type="submit">Book!</button>
             </form>
         </div>
-       <div class="pay">
-           <p><?php if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_booking']) && $ticket){
-               echo $car_price; }?> </p>
-           <p><?= $balance ?> €</p>
-       </div>
-    <?php else: ?>
-        <p>No items in the cart.</p>
-    <?php endif; ?>
+        <?php else: ?>
+            <p>No items in the cart.</p>
+        <?php endif; ?>
+    </div>
 </main>
 </body>
 <script src="../assets/js/nav.js"></script>
+<script src="../assets/js/carimages.js"></script>
 </html>

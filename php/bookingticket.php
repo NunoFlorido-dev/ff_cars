@@ -29,8 +29,6 @@ function trimString($string): string
 #[NoReturn] function createBookingTicket($license_plate, $id, $begin_time, $end_time): void
 {
 
-
-
     global $connection;
 
     // Check for empty or invalid data and handle accordingly

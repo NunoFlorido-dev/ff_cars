@@ -1,0 +1,64 @@
+.cart_page {
+    display: flex;
+    flex-direction: row;
+}
+
+.tickets {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    justify-content: center;
+    align-items: center;
+}
+
+.ticket-container {
+    display: flex;
+    flex-direction: row;
+    width: 60%;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px 2px rgb(224, 224, 224);
+}
+
+.img_wrapper {
+    display: flex;
+    width: 100%;
+}
+
+.img_wrapper img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.ticket-container_part {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.car_info_mid {
+    display: flex;
+    justify-content: right;
+}
+
+.car_info_bot {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.car_info_bot_part {
+    display: flex;
+    flex-direction: row;
+}
+
+.endtime {
+    justify-self: right;
+}
+
+.pay {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    padding: 30px;
+}

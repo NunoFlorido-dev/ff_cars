@@ -62,6 +62,19 @@ main .user-info p{
     font-family: "ZT Talk", sans-serif;
 }
 
+strong {
+    font-family: "ZT Talk", sans-serif;
+}
+
+ul{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+ul li{
+    list-style: none;
+}
 
 
 @media (max-width: 920px){

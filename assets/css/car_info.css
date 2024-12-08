@@ -174,11 +174,6 @@ ul {
     border: 0;
 }
 
-/* Remove ícone no Firefox */
-input[type="date"]::-moz-calendar-picker-indicator {
-    display: none;
-}
-
 .buttons{
     margin-top: 0.5rem;
 }

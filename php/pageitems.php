@@ -31,7 +31,7 @@ global $car;
         <div class ="buttons">
         <button type="submit" id="add-pay" class="button1" formaction="cart.php">Add to Cart & Pay</button>
         <br>
-        <button type="submit" class="button2"  id="add-continue">Add to Cart & Continue Search</button>
+        <button type="submit" class="button2"  id="add-continue" formaction="../index.php">Add to Cart & Continue Search</button>
         </div>
     </form>
 HTML;

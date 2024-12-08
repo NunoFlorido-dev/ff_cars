@@ -9,7 +9,7 @@ include("../php/bookingticket.php");
 $email = $_SESSION['email'];
 $balance = (int)fetchBalance($email);
 
-
+// Set up the booking ticket session
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['set_session'])) {
     $_SESSION['booking_ticket'] = [
         'license_plate' => trimString($_POST['license_plate']),
@@ -22,39 +22,50 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['set_session'])) {
 // Check if the ticket exists in the session
 $ticket = $_SESSION['booking_ticket'] ?? null;
 
-
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_booking']) && $ticket) {
-    $license_plate = $ticket['license_plate'];
-    $id = $ticket['id'];
+// Calculate the total price if ticket exists
+$total_price = 0;
+if ($ticket) {
     $begin_time = $ticket['begin_time'];
     $end_time = $ticket['end_time'];
     $car_price = (int)fetchCarPrice($ticket['license_plate']);
 
+    // Calculate the number of days
+    $start_date = new DateTime($begin_time);
+    $end_date = new DateTime($end_time);
+    $current_date = new DateTime();
 
-    if($balance >= $car_price){
-    removeBalance($email, $car_price);
-    // Call your booking function
-    createBookingTicket($license_plate, $id, $begin_time, $end_time);
-    }else{
-    echo "Not enough funds";
+    if ($start_date < $current_date || $end_date < $current_date) {
+        echo "Error: You cannot book dates that are in the past.";
+        exit;
+    }
+
+// Check if the end date is after the begin date
+    if ($end_date <= $start_date) {
+        echo "Error: End date must be after the begin date.";
+        exit;
+    }
+
+
+
+    $interval = $start_date->diff($end_date);
+    $days = max(1, $interval->days); // Ensure at least 1 day is charged
+
+    $total_price = $car_price * $days;
 }
-    // Clear the session after successful booking
-    unset($_SESSION['booking_ticket']);  // Removes only the booking_ticket session variable
-    // Or, if you want to clear all session variables, you can use:
-    // session_unset();
 
-    // Optionally, you can destroy the session entirely (useful if you want to log out the user)
-    // session_destroy();
-
-    // Redirect to another page (e.g., homepage)
-    header("Location: ../index.php");
+// Handle booking confirmation
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_booking']) && $ticket) {
+    if ($balance >= $total_price) {
+        removeBalance($email, $total_price);
+        createBookingTicket($ticket['license_plate'], $ticket['id'], $ticket['begin_time'], $ticket['end_time']);
+        unset($_SESSION['booking_ticket']);  // Clear the session ticket
+        header("Location: ../index.php");
+        exit;
+    } else {
+        echo "Not enough funds";
+    }
 }
-
-
 ?>
-
-
 
 <!doctype html>
 <html lang="en">
@@ -93,21 +104,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_booking']) &&
             <p>User ID: <?= htmlspecialchars($ticket['id']); ?></p>
             <p>Begin Time: <?= htmlspecialchars($ticket['begin_time']); ?></p>
             <p>End Time: <?= htmlspecialchars($ticket['end_time']); ?></p>
-            <p><?= fetchCarPrice(htmlspecialchars($ticket['license_plate'])); ?> €</p>
+            <p>Total Price: <?= htmlspecialchars($total_price); ?> €</p>
             <form action="cart.php" method="POST">
                 <input type="hidden" name="confirm_booking" value="1">
                 <button type="submit">Confirm Booking</button>
             </form>
         </div>
-       <div class="pay">
-           <p><?php if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_booking']) && $ticket){
-               echo $car_price; }?> </p>
-           <p><?= $balance ?> €</p>
-       </div>
+        <div class="pay">
+            <p>Balance: <?= htmlspecialchars($balance); ?> €</p>
+        </div>
     <?php else: ?>
         <p>No items in the cart.</p>
     <?php endif; ?>
 </main>
-</body>
 <script src="../assets/js/nav.js"></script>
+</body>
 </html>

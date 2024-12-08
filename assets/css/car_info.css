@@ -21,12 +21,12 @@ main{
     .car-container{
         flex-direction: column;
     }
-    
+
 }
 
 .car-container .left-part {
-display: flex;
-flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 .image_container{
@@ -37,9 +37,63 @@ flex-direction: column;
     align-items: center;
 }
 
+.history{
+    box-shadow: 0 0 5px 2px rgb(224, 224, 224);
+    border-radius: 1rem;
+    width: 60%;
+    height: auto;
+    margin-top: 2rem;
+    justify-content: space-evenly;
+    flex-direction: row;
+    padding: 2.5rem 2rem 2.5rem 2rem;
+    font-family: "Satoshi", sans-serif;
+    font-size: 1rem;
+}
+
+ul {
+    list-style-type: none;
+}
+
+
+.editbut{
+    width: 100%;
+    margin-top: 1rem;
+    padding: 1rem 3rem;
+    background-color: var(--green);
+    color: #2B2B2E;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family: "Satoshi", sans-serif;
+    cursor: pointer;
+}
+
+.editbut:hover {
+    outline: 1px solid var(--darkblue);
+}
+
+.ticket-history{
+    margin-bottom: 2rem;
+    margin-left: 2rem;
+}
+
+.tickettitle{
+    font-family: "ZT Talk", sans-serif;
+    font-size: 2rem;
+}
+
+.car-changes-history{
+    margin-left: 2rem;
+}
+
+.carchangestitle{
+    font-family: "ZT Talk", sans-serif;
+    font-size: 2rem;
+}
+
 @media (max-width: 1200px) {
     .car-container {
-    gap: 1rem;
+        gap: 1rem;
 
     }
 
@@ -71,6 +125,116 @@ flex-direction: column;
 .car-container .text p{
     font-family: "Satoshi", sans-serif;
     font-size: 1.25rem;
+}
+
+.dates{
+    box-shadow: 0 0 5px 2px rgb(224, 224, 224);
+    border-radius: 1rem;
+    width: 100%;
+    height: auto;
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 2rem 2rem 2rem 2rem;
+}
+
+.begindate, .enddate{
+    font-family: "ZT Talk", sans-serif;
+    font-weight: normal;
+}
+
+.calendar {
+    box-sizing: border-box;
+    margin-top: 0.3rem;
+    font-family: "Satoshi", sans-serif;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    outline: none;
+    appearance: none; /* Remove estilo padrão do navegador */
+    -webkit-appearance: none; /* Remove estilo no Chrome/Safari */
+    -moz-appearance: textfield; /* Remove estilo no Firefox */
+    color: #000; /* Garanta visibilidade do texto */
+}
+
+/* Remove o ícone padrão no Chrome/Safari */
+.calendar::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}
+
+/* Remove o ícone padrão no Firefox */
+.calendar::-moz-focus-inner {
+    border: 0;
+}
+
+.buttons{
+    margin-top: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.button1, .button2 {
+    width: 25rem;
+    font-family: "Satoshi", sans-serif;
+    background-color: var(--green);
+    border: 0;
+    border-radius: 0.25rem;
+    padding: 0.7rem;
+    cursor: pointer;
+}
+
+.button1:hover, .button2:hover{
+    outline:  1px solid var(--darkblue);
+}
+
+/* Ajuste para input[type="submit"] */
+.button1-cont input[type="submit"] {
+    width: 4rem;
+    font-family: "Satoshi", sans-serif;
+    background-color: var(--green);
+    border: 1px solid var(--darkblue);
+    border-radius: 0.25rem;
+    cursor: pointer;
+    padding: 0.25rem;
+}
+
+/* Ajuste para input[type="date"] dentro do botão */
+.button1-cont input[type="date"] {
+    border-radius: 0.125rem;
+    border: 1px solid var(--darkblue);
+    font-family: "Satoshi", sans-serif;
+    padding: 0.7rem;
+    background: #B9EEC3;
+}
+
+
+/* Ajuste para input[type="submit"] */
+.button2-cont input[type="submit"] {
+    width: 4rem;
+    font-family: "Satoshi", sans-serif;
+    background-color: var(--green);
+    border: 1px solid var(--darkblue);
+    border-radius: 0.25rem;
+    cursor: pointer;
+    padding: 0.25rem;
+}
+
+/* Ajuste para input[type="date"] dentro do botão */
+.button2-cont input[type="date"] {
+    border-radius: 0.125rem;
+    border: 1px solid var(--darkblue);
+    font-family: "Satoshi", sans-serif;
+    padding: 0.4rem;
+    background: #B9EEC3;
+}
+
+strong{
+    font-family: "ZT Talk", sans-serif;
+}
+
+input{
+
 }
 
 .ticket-item {

@@ -11,19 +11,28 @@ global $car;
         <input type="hidden" name="id" value="{$id}">
          <input type="hidden" name="set_session" value="1">
 
-
-        <div class="dates">
+<div class = "dates">
+        <div class="begindate">
+        
             <label for="begin-time">Begin Time</label>
+            <div class = "calendar">
             <input type="date" id="begin-time" name="begin-time">
-
+            </div>
+            </div>
+            <div class="enddate">
             <label for="end-time">End Time</label>
+            <div class = "calendar">
             <input type="date" id="end-time" name="end-time">
+            </div>
+        </div>
         </div>
 
         <br>
-        <button type="submit" id="add-pay" formaction="cart.php">Add to Cart & Pay</button>
+        <div class ="buttons">
+        <button type="submit" id="add-pay" class="button1" formaction="cart.php">Add to Cart & Pay</button>
         <br>
-        <button type="submit" id="add-continue">Add to Cart & Continue Search</button>
+        <button type="submit" class="button2"  id="add-continue">Add to Cart & Continue Search</button>
+        </div>
     </form>
 HTML;
 ;
@@ -31,7 +40,7 @@ HTML;
         echo '<form method="post" action="../pages/car_form.php">
          <input type="hidden" name="license_plate" value="' . htmlspecialchars($car['license_plate']) . '">
         
-         <button type="submit" id="edit">Edit</button>
+         <button class="editbut" type="submit" id="edit">Edit</button>
     </form>';
     }
 

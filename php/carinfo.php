@@ -129,6 +129,8 @@ function fetchChangeDate($license_plate) {
     return null;
 }
 
+
+
 function fetchAvailability($license_plate): bool {
     global $connection;
     $current_date = date('Y-m-d H:i:s');

@@ -38,3 +38,34 @@ function displayImagesAdmin(containers, images){
 }
 
 displayImagesAdmin(imageContainersAdmin, imageArray);
+
+document.addEventListener('DOMContentLoaded', () => {
+    const imageContainerForm = document.querySelector("main .car-container .left-part .car_image");
+
+    const imageArray = [
+        '../assets/images/car_1.jpg',
+        '../assets/images/car_2.jpg',
+        '../assets/images/car_3.jpg',
+        '../assets/images/car_4.jpg',
+        '../assets/images/car_5.jpg',
+        '../assets/images/car_6.jpg',
+        '../assets/images/car_7.jpg'
+    ];
+
+    function displaySingleImage(container, images) {
+        // Generate a random index
+        let random = Math.floor(Math.random() * images.length) + 1;
+
+        // Set the random image to the container's src
+        container.setAttribute('src', images[random]);
+
+        console.log(`Random index: ${random}, Image: ${images[random]}`);
+    }
+
+    // Ensure the element exists before using it
+    if (imageContainerForm) {
+        displaySingleImage(imageContainerForm, imageArray);
+    } else {
+        console.error("Image container not found!");
+    }
+});

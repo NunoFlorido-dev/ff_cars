@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['license_plate_change'
 <main>
     <div class="car-container">
         <div class="left-part">
-            <img alt="car image" src="" />
+            <img class="car_image" alt="car image" src="" />
         </div>
         <div class="right-part">
             <form method="POST" action="<?= $_SERVER['PHP_SELF'];  ?>">
@@ -99,5 +99,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['license_plate_change'
 </main>
 
 </body>
-<script src="../assets/js/nav.js"
+<script src="../assets/js/nav.js"></script>
+<script src="../assets/js/carimages.js"></script>
 </html>

@@ -129,7 +129,7 @@ ul {
 .dates{
     box-shadow: 0 0 5px 2px rgb(224, 224, 224);
     border-radius: 1rem;
-    width: 99%;
+    width: 95%;
     height: auto;
     margin-top: 2rem;
     display: flex;
@@ -147,20 +147,100 @@ ul {
     font-size: 1rem;
 }
 
-.calendar{
+.calendar {
     box-sizing: border-box;
-    margin-top: 0.5rem;
+    margin-top: 0.3rem;
     font-family: "Satoshi", sans-serif;
     font-size: 1rem;
     background: #B9EEC3;
     padding: 0.4rem;
     border-radius: 0.5rem;
-    border: none;
+    border: 1px solid var(--darkblue); /* Adicione borda para consistência */
     outline: none;
-    appearance: none; /* Remove o estilo padrão */
-    -webkit-appearance: none; /* Remove o estilo no WebKit */
+    appearance: none; /* Remove estilo padrão do navegador */
+    -webkit-appearance: none; /* Remove estilo no Chrome/Safari */
+    -moz-appearance: textfield; /* Remove estilo no Firefox */
+    color: #000; /* Garanta visibilidade do texto */
 }
 
+/* Remove o ícone padrão no Chrome/Safari */
 .calendar::-webkit-calendar-picker-indicator {
     display: none;
+    -webkit-appearance: none;
+}
+
+/* Remove o ícone padrão no Firefox */
+.calendar::-moz-focus-inner {
+    border: 0;
+}
+
+/* Remove ícone no Firefox */
+input[type="date"]::-moz-calendar-picker-indicator {
+    display: none;
+}
+
+.buttons{
+    margin-top: 0.5rem;
+}
+
+.button1 {
+    width: 25rem;
+    font-family: "Satoshi", sans-serif;
+    background-color: var(--green);
+    border: 1px solid var(--darkblue);
+    border-radius: 0.25rem;
+    padding: 0.7rem;
+    cursor: pointer;
+}
+
+/* Ajuste para input[type="submit"] */
+.button1-cont input[type="submit"] {
+    width: 4rem;
+    font-family: "Satoshi", sans-serif;
+    background-color: var(--green);
+    border: 1px solid var(--darkblue);
+    border-radius: 0.25rem;
+    cursor: pointer;
+    padding: 0.25rem;
+}
+
+/* Ajuste para input[type="date"] dentro do botão */
+.button1-cont input[type="date"] {
+    border-radius: 0.125rem;
+    border: 1px solid var(--darkblue);
+    font-family: "Satoshi", sans-serif;
+    padding: 0.7rem;
+    background: #B9EEC3;
+}
+
+
+.button2 {
+    margin-top: 1.5rem;
+    width: 25rem;
+    font-family: "Satoshi", sans-serif;
+    background-color: var(--green);
+    border: 1px solid var(--darkblue);
+    border-radius: 0.25rem;
+    padding: 0.7rem;
+    cursor: pointer;
+}
+
+/* Ajuste para input[type="submit"] */
+.button2-cont input[type="submit"] {
+    width: 4rem;
+    font-family: "Satoshi", sans-serif;
+    background-color: var(--green);
+    border: 1px solid var(--darkblue);
+    border-radius: 0.25rem;
+    cursor: pointer;
+    padding: 0.25rem;
+}
+
+/* Ajuste para input[type="date"] dentro do botão */
+.button2-cont input[type="date"] {
+    border-radius: 0.125rem;
+    border: 1px solid var(--darkblue);
+    font-family: "Satoshi", sans-serif;
+    padding: 0.4rem;
+    background: #B9EEC3;
 }

@@ -117,7 +117,7 @@ $changes_result = pg_query_params($GLOBALS['connection'], $changes_query, [$_GET
                             <strong>ID:</strong> <?php echo htmlspecialchars($change['id']); ?><br>
                             <strong>Price:</strong> <?php echo htmlspecialchars($change['price_per_day']); ?>€<br>
                             <strong>Availability:</strong> <?php echo $change['availability'] ? 'Available' : 'Not Available'; ?><br>
-                            <strong>Change date:</strong> <?php echo htmlspecialchars($change['change_time']); ?><br>
+                            <strong>Change Date:</strong> <?php echo htmlspecialchars($change['change_time']); ?><br>
                         </li>
                     <?php endwhile; ?>
                 </ul>

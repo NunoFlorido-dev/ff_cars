@@ -59,10 +59,14 @@ main{
     width: 6rem;
     font-family: "Satoshi", sans-serif;
     background-color: var(--green);
-    border: 1px solid var(--darkblue);
+    border: 0;
     border-radius: 0.25rem;
     padding: 0.25rem 1rem;
     cursor: pointer;
+}
+
+.wallet-cont button:hover{
+   outline:  1px solid var(--darkblue);
 }
 
 .wallet-cont form label{
@@ -74,15 +78,22 @@ main{
     border: 1px solid var(--darkblue);
 }
 
+.wallet-cont form input[type=number]:hover{
+    outline: 1px solid var(--darkblue);
+}
+
 .wallet-cont form input[type=submit]{
     width: 4rem;
     font-family: "Satoshi", sans-serif;
     background-color: var(--green);
-    border: 1px solid var(--darkblue);
+    border: 0;
     border-radius: 0.25rem;
     cursor: pointer;
     padding: 0.25rem
+}
 
+.wallet-cont form input[type=submit]:hover{
+    outline:  1px solid var(--darkblue);
 }
 
 @media (max-width: 920px) {

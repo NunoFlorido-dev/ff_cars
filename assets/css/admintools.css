@@ -101,18 +101,18 @@ main{
     font-weight: bold;
 }
 
-.search {
+.search{
     display: flex;
     flex-direction: column;
     width: 60%;
     border-radius: 10px;
     text-align: left;
     background-color: rgb(224, 224, 224);
-    padding-bottom: 17px;
-    margin-bottom: 40px;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
 }
 
-.search_top {
+.search_top{
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -122,26 +122,28 @@ main{
     background-color: white;
 }
 
-.search_top_textinput {
+
+.search_top_textinput{
     border: none;
     outline: none;
     width: 90%;
     font-family: "Satoshi", sans-serif;
 }
 
-@media (max-width: 1130px) {
-    .search_top_textinput {
+@media (max-width: 1130px){
+    .search_top_textinput{
         width: 80%;
     }
 }
 
-@media (max-width: 570px) {
-    .search_top_textinput {
+@media (max-width: 570px){
+    .search_top_textinput{
         width: 70%;
     }
 }
 
-.search_top_button {
+
+.search_top_button{
     border: none;
     border-radius: 0.5rem;
     width: 2.5rem;
@@ -150,7 +152,12 @@ main{
     background-color: var(--green);
 }
 
-.search_top_button img {
+.search_top_button:hover{
+    outline: 1px solid var(--darkblue);
+    cursor: pointer;
+}
+
+.search_top_button img{
     width: 1.5rem;
     place-self: center;
     height: 1.5rem;
@@ -165,26 +172,20 @@ main{
     margin-right: 0.75rem;
 }
 
-.search_bottom_button {
+.search_bottom_button{
     border: none;
     padding: 0.75rem 1rem;
     margin-top: 0.5rem;
     border-radius: 1rem;
     background-color: white;
     cursor: pointer;
-    transition: all 0.3s ease-in-out;
 }
 
-.search_bottom_button:hover {
-    background-color: #45a049;
-    color: white;
+.search_bottom_button:hover{
+    outline: 1px solid var(--darkblue);
+    cursor: pointer;
 }
 
-.search_bottom_button.active {
-    background-color: #45a049;
-    color: white;
-    font-weight: bold;
-}
 
 .add_button {
     display: flex;
@@ -197,7 +198,7 @@ main{
 
 .add_button button {
     background-color: #B9EEC3;
-    border: 0.8rem;
+    border: 0;
     width: 4rem;
     height: 4rem;
     display: flex;
@@ -205,11 +206,10 @@ main{
     align-items: center;
     border-radius: 1rem;
     cursor: pointer;
-    transition: all 0.3s ease-in-out;
 }
 
 .add_button button:hover {
-    background-color: #45a049;
+    outline: 1px solid var(--darkblue);
 }
 
 .add_button button img {
@@ -282,7 +282,7 @@ main{
 .list-container .car_info button,
 .list-container .car_info a{
     background-color: #B9EEC3;
-    border: none;
+    border: 0;
     border-radius: 0.25rem;
     width: 4rem;
     height: 2.5rem;
@@ -290,14 +290,12 @@ main{
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    transition: all 0.3s ease-in-out;
     text-align: center;
     padding: 0;
 }
-
 .list-container .car_info button:hover,
-.list-container .car_info a:hover{
-    background-color: #45a049;
+.list-container .car_info a:hover {
+    outline: 1px solid var(--darkblue);
 }
 
 .list-container .car_info button img,
@@ -378,18 +376,7 @@ main{
     font-family: "Satoshi", sans-serif;
 }
 
-.list-container .car_list_page_button{
-    margin: 2rem;
-    font-family: "Satoshi", sans-serif;
-    background: none;
-    border: none;
-    outline: none;
-    box-shadow: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-}
+
 
 .list-container .car_list_page_button img {
     width: 2rem;

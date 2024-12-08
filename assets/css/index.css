@@ -27,8 +27,8 @@ body{
     border-radius: 10px;
     text-align: left;
     background-color: rgb(224, 224, 224);
-    padding-bottom: 17px;
-    margin-bottom: 40px;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
 }
 
 .search_top{
@@ -71,6 +71,11 @@ body{
     background-color: var(--green);
 }
 
+.search_top_button:hover{
+    outline: 1px solid var(--darkblue);
+    cursor: pointer;
+}
+
 .search_top_button img{
     width: 1.5rem;
     place-self: center;
@@ -95,11 +100,12 @@ body{
     cursor: pointer;
 }
 
-
-@media (max-width: 840px){
-   .search_bottom{
-   }
+.search_bottom_button:hover{
+    outline: 1px solid var(--darkblue);
+    cursor: pointer;
 }
+
+
 
 .car_list{
     display: flex;
@@ -126,6 +132,9 @@ body{
     color: var(--black);
 }
 
+.car_list_part:hover{
+    outline: 1px solid var(--darkblue);
+}
 
 .img_wrapper{
     width: 100%;

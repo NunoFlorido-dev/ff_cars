@@ -79,23 +79,24 @@ $tickets_result = pg_query_params($GLOBALS['connection'], $ticket_query, [$id]);
     </section>
 
 
-    <section class="user-ticket-history">
-     <h2 class ="bookings" >Bookings</h2>
-        <?php if ($tickets_result && pg_num_rows($tickets_result) > 0): ?>
-            <ul>
-                <?php while ($ticket = pg_fetch_assoc($tickets_result)): ?>
-                    <li>
-                        <strong>License Plate:</strong> <?php echo htmlspecialchars($ticket['car_license_plate']); ?><br>
-                        <strong>Begin Time:</strong> <?php echo htmlspecialchars($ticket['begin_time']); ?><br>
-                        <strong>End Time:</strong> <?php echo htmlspecialchars($ticket['end_time']); ?><br>
-                    </li>
-                <?php endwhile; ?>
-            </ul>
-        <?php else: ?>
-            <p>No tickets found for this user.</p>
-        <?php endif; ?>
-
-    </section>
+    <?php if (!$GLOBALS['alternateMode']): ?>
+        <section class="user-ticket-history">
+            <h2 class="bookings">Bookings</h2>
+            <?php if ($tickets_result && pg_num_rows($tickets_result) > 0): ?>
+                <ul>
+                    <?php while ($ticket = pg_fetch_assoc($tickets_result)): ?>
+                        <li>
+                            <strong>License Plate:</strong> <?php echo htmlspecialchars($ticket['car_license_plate']); ?><br>
+                            <strong>Begin Time:</strong> <?php echo htmlspecialchars($ticket['begin_time']); ?><br>
+                            <strong>End Time:</strong> <?php echo htmlspecialchars($ticket['end_time']); ?><br>
+                        </li>
+                    <?php endwhile; ?>
+                </ul>
+            <?php else: ?>
+                <p>No tickets found for this user.</p>
+            <?php endif; ?>
+        </section>
+    <?php endif; ?>
 
 
 </main>

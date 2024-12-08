@@ -56,9 +56,10 @@ ul {
 
 
 .editbut{
+    width: 100%;
     margin-top: 1rem;
     padding: 1rem 3rem;
-    background-color: #B9EEC3;
+    background-color: var(--green);
     color: #2B2B2E;
     border: none;
     border-radius: 5px;
@@ -68,7 +69,7 @@ ul {
 }
 
 .editbut:hover {
-    background-color: #45a049;
+    outline: 1px solid var(--darkblue);
 }
 
 .ticket-history{
@@ -129,7 +130,7 @@ ul {
 .dates{
     box-shadow: 0 0 5px 2px rgb(224, 224, 224);
     border-radius: 1rem;
-    width: 95%;
+    width: 100%;
     height: auto;
     margin-top: 2rem;
     display: flex;
@@ -137,14 +138,9 @@ ul {
     padding: 2rem 2rem 2rem 2rem;
 }
 
-.begindate{
+.begindate, .enddate{
     font-family: "ZT Talk", sans-serif;
-    font-size: 1rem;
-}
-
-.enddate{
-    font-family: "ZT Talk", sans-serif;
-    font-size: 1rem;
+    font-weight: normal;
 }
 
 .calendar {
@@ -152,10 +148,7 @@ ul {
     margin-top: 0.3rem;
     font-family: "Satoshi", sans-serif;
     font-size: 1rem;
-    background: #B9EEC3;
-    padding: 0.4rem;
     border-radius: 0.5rem;
-    border: 1px solid var(--darkblue); /* Adicione borda para consistência */
     outline: none;
     appearance: none; /* Remove estilo padrão do navegador */
     -webkit-appearance: none; /* Remove estilo no Chrome/Safari */
@@ -176,16 +169,23 @@ ul {
 
 .buttons{
     margin-top: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
-.button1 {
+.button1, .button2 {
     width: 25rem;
     font-family: "Satoshi", sans-serif;
     background-color: var(--green);
-    border: 1px solid var(--darkblue);
+    border: 0;
     border-radius: 0.25rem;
     padding: 0.7rem;
     cursor: pointer;
+}
+
+.button1:hover, .button2:hover{
+ outline:  1px solid var(--darkblue);
 }
 
 /* Ajuste para input[type="submit"] */
@@ -209,17 +209,6 @@ ul {
 }
 
 
-.button2 {
-    margin-top: 1.5rem;
-    width: 25rem;
-    font-family: "Satoshi", sans-serif;
-    background-color: var(--green);
-    border: 1px solid var(--darkblue);
-    border-radius: 0.25rem;
-    padding: 0.7rem;
-    cursor: pointer;
-}
-
 /* Ajuste para input[type="submit"] */
 .button2-cont input[type="submit"] {
     width: 4rem;
@@ -238,4 +227,12 @@ ul {
     font-family: "Satoshi", sans-serif;
     padding: 0.4rem;
     background: #B9EEC3;
+}
+
+strong{
+    font-family: "ZT Talk", sans-serif;
+}
+
+input{
+
 }

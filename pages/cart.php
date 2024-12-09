@@ -108,14 +108,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_booking']) &&
             </div>
         </div>
         <div class="pay">
+            <div class = "pay-container">
             <p><?php if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_booking']) && $ticket) {
                     echo $car_price;
                 } ?> </p>
-            <p><?= $balance ?> €</p>
+            <p>Funds available:</p>
+            <p><?= $balance ?>€</p>
+                <div class ="button">
             <form action="cart.php" method="POST">
                 <input type="hidden" name="confirm_booking" value="1">
-                <button type="submit">Book!</button>
+                <button type="submit" class="book_button">Book!</button>
             </form>
+                </div>
+        </div>
         </div>
         <?php else: ?>
             <p>No items in the cart.</p>

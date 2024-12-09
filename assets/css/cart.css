@@ -9,12 +9,13 @@
     width: 75%;
     justify-content: center;
     align-items: center;
+    padding: 5%;
 }
 
 .ticket-container {
     display: flex;
     flex-direction: row;
-    width: 60%;
+    width: 80%;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 5px 2px rgb(224, 224, 224);
@@ -22,19 +23,31 @@
 
 .img_wrapper {
     display: flex;
-    width: 100%;
+    width: 20%;
 }
 
 .img_wrapper img {
+    height: auto;
     max-width: 100%;
-    max-height: 100%;
+    border-radius: 10px;
 }
 
 .ticket-container_part {
     display: flex;
     flex-direction: column;
+    width:80%;
+    margin-left: 15px;
+    font-family: "Satoshi", sans-serif;
+
 }
 
+
+.car_info_top {
+    font-size: 1rem;
+    font-family: "ZT Talk", serif;
+    font-weight: bold;
+    margin: 10px;
+}
 
 .car_info_mid {
     display: flex;
@@ -60,5 +73,43 @@
     display: flex;
     flex-direction: column;
     width: 25%;
-    padding: 30px;
+    padding: 5%;
+    justify-content: right;
+    align-items: end;
+}
+
+.pay-container{
+    font-family: "ZT Talk", serif;
+    font-weight: bold;
+    border-radius: 10px;
+    box-shadow: 0 0 5px 2px rgb(224, 224, 224);
+    margin: 3rem;
+    padding: 3rem;
+}
+
+.button{
+    margin-top: 1rem;
+}
+
+.book_button{
+    font-family: "Satoshi", sans-serif;
+    background-color: var(--green);
+    border: 0;
+    border-radius: 0.25rem;
+    padding: 0.7rem;
+    cursor: pointer;
+}
+
+@media (max-width: 600px) {
+    .cart_page{
+        flex-direction: column;
+    }
+
+    .tickets{
+        width: 100%;
+    }
+
+    .pay {
+        width: 100%;
+    }
 }

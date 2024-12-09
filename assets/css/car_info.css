@@ -150,19 +150,19 @@ ul {
     font-size: 1rem;
     border-radius: 0.5rem;
     outline: none;
-    appearance: none; /* Remove estilo padrão do navegador */
-    -webkit-appearance: none; /* Remove estilo no Chrome/Safari */
-    -moz-appearance: textfield; /* Remove estilo no Firefox */
-    color: #000; /* Garanta visibilidade do texto */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+    color: #000;
 }
 
-/* Remove o ícone padrão no Chrome/Safari */
+
 .calendar::-webkit-calendar-picker-indicator {
     display: none;
     -webkit-appearance: none;
 }
 
-/* Remove o ícone padrão no Firefox */
+
 .calendar::-moz-focus-inner {
     border: 0;
 }
@@ -188,7 +188,7 @@ ul {
  outline:  1px solid var(--darkblue);
 }
 
-/* Ajuste para input[type="submit"] */
+
 .button1-cont input[type="submit"] {
     width: 4rem;
     font-family: "Satoshi", sans-serif;
@@ -199,7 +199,7 @@ ul {
     padding: 0.25rem;
 }
 
-/* Ajuste para input[type="date"] dentro do botão */
+
 .button1-cont input[type="date"] {
     border-radius: 0.125rem;
     border: 1px solid var(--darkblue);
@@ -236,3 +236,12 @@ strong{
 input{
 
 }
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 80%;
+}
+
+

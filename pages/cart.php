@@ -90,21 +90,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_booking']) &&
             <div class="ticket-container">
                 <div class='img_wrapper'><img alt='car image'></div>
                 <div class="ticket-container_part">
-                    <div class="car_info_top">
-                        <p><?= fetchBrand(htmlspecialchars($ticket['license_plate'])); ?> <?= fetchSegment(htmlspecialchars($ticket['license_plate'])); ?>
-                            <?= fetchModel(htmlspecialchars($ticket['license_plate'])); ?></p>
-                    </div>
-                    <div class="car_info_mid">
-                        <p><?= htmlspecialchars($ticket['begin_time']); ?></p>
-                    </div>
-                    <div class="car_info_bot">
-                        <div class="car_info_bot_part">
-                            <p><?= fetchCarPrice(htmlspecialchars($ticket['license_plate'])); ?> €</p>
-                            <p><?= htmlspecialchars($ticket['license_plate']); ?></p>
-                        </div>
-                        <p><?= htmlspecialchars($ticket['end_time']); ?></p>
-                    </div>
-                </div>
+                        <strong class="name"><?= fetchBrand(htmlspecialchars($ticket['license_plate'])); ?> <?= fetchSegment(htmlspecialchars($ticket['license_plate'])); ?>
+                            <?= fetchModel(htmlspecialchars($ticket['license_plate'])); ?></strong>
+                    <p>License Plate: <?= htmlspecialchars($ticket['license_plate']); ?></p>
+                    <p>Start: <?= htmlspecialchars($ticket['begin_time']); ?></p>
+                    <p>Finish: <?= htmlspecialchars($ticket['end_time']); ?></p>
+                    <p>Price / Day: <?= fetchCarPrice(htmlspecialchars($ticket['license_plate'])); ?> €</p>
             </div>
         </div>
         <div class="pay">

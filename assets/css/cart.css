@@ -1,70 +1,59 @@
 .cart_page {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    width: 100%;
 }
 
 .tickets {
+    margin-top: 4rem;
     display: flex;
     flex-direction: column;
-    width: 75%;
+    width: 100%;
     justify-content: center;
     align-items: center;
-    padding: 5%;
+    gap: 2rem;
+
 }
 
 .ticket-container {
     display: flex;
-    flex-direction: row;
-    width: 80%;
-    padding: 20px;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    width: 30rem;
+    padding: 2rem;
     border-radius: 10px;
     box-shadow: 0 0 5px 2px rgb(224, 224, 224);
 }
 
 .img_wrapper {
     display: flex;
-    width: 20%;
+    width: 80%;
+    height: 12rem;
 }
 
 .img_wrapper img {
-    height: auto;
-    max-width: 100%;
-    border-radius: 10px;
+    width: 100%;
+    border-radius: 1rem;
+    object-fit: cover;
 }
 
 .ticket-container_part {
     display: flex;
     flex-direction: column;
-    width:80%;
-    margin-left: 15px;
+    margin-left: 1rem;
     font-family: "Satoshi", sans-serif;
-
+    justify-content: center;
+    align-items: center;
 }
 
-
-.car_info_top {
-    font-size: 1rem;
-    font-family: "ZT Talk", serif;
-    font-weight: bold;
-    margin: 10px;
+strong{
+    font-family: "ZT Talk", sans-serif;
 }
 
-.car_info_mid {
-    display: flex;
-    justify-content: right;
+.name{
+    font-size: 2rem;
 }
-
-.car_info_bot {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.car_info_bot_part {
-    display: flex;
-    flex-direction: row;
-}
-
 .endtime {
     justify-self: right;
 }
@@ -72,19 +61,20 @@
 .pay {
     display: flex;
     flex-direction: column;
-    width: 25%;
-    padding: 5%;
-    justify-content: right;
-    align-items: end;
+    width: 30rem;
+    align-items: center;
 }
 
 .pay-container{
     font-family: "ZT Talk", serif;
     font-weight: bold;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     border-radius: 10px;
     box-shadow: 0 0 5px 2px rgb(224, 224, 224);
-    margin: 3rem;
-    padding: 3rem;
+    padding: 2rem;
+    width: 100%;
 }
 
 .button{

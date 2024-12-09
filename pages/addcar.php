@@ -97,6 +97,7 @@ $id = fetchID($email);
 </main>
 
 <script src="../assets/js/nav.js"></script>
+<script src="assets/js/carimages.js"></script>
 
 </body>
 </html>

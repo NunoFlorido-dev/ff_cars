@@ -73,8 +73,6 @@ $availability_query = "SELECT 1 FROM booking_ticket
                        LIMIT 1";
 
 
-
-
 ?>
     <!doctype html>
     <html lang="en">

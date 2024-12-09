@@ -60,12 +60,7 @@ $tickets_result = pg_query_params($GLOBALS['connection'], $ticket_query, [$id]);
             <p><?= $_SESSION['email'] ?></p>
 
         </div>
-
-        <div class="password_cont">
-            <h1>Password</h1>
-            <p><?= $_SESSION['password'] ?></p>
-        </div>
-
+        
         <div class="id_cont">
             <h1>ID</h1>
             <p><?= $id ?></p>

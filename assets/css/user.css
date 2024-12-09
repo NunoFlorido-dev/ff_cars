@@ -44,7 +44,6 @@ main .user-info p{
 }
 
 .user-ticket-history{
-    width: 40%;
     height: auto;
     display: flex;
     flex-direction: column;
@@ -84,6 +83,10 @@ ul li{
 
     main .user-info img{
         width: 40%;
+    }
+
+    .user-ticket-history{
+        width: 60%;
     }
 
 }

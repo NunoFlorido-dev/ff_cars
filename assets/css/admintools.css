@@ -6,6 +6,8 @@ main{
     align-items: center;
     padding: 2rem;
     gap: 2rem;
+    font-family: "Satoshi", sans-serif;
+    font-size: 1.25rem;
 }
 
 .select-page{

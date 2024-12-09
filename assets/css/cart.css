@@ -1,0 +1,105 @@
+.cart_page {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.tickets {
+    margin-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+
+}
+
+.ticket-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    width: 30rem;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 5px 2px rgb(224, 224, 224);
+}
+
+.img_wrapper {
+    display: flex;
+    width: 80%;
+    height: 12rem;
+}
+
+.img_wrapper img {
+    width: 100%;
+    border-radius: 1rem;
+    object-fit: cover;
+}
+
+.ticket-container_part {
+    display: flex;
+    flex-direction: column;
+    margin-left: 1rem;
+    font-family: "Satoshi", sans-serif;
+    justify-content: center;
+    align-items: center;
+}
+
+strong{
+    font-family: "ZT Talk", sans-serif;
+}
+
+.name{
+    font-size: 2rem;
+}
+.endtime {
+    justify-self: right;
+}
+
+.pay {
+    display: flex;
+    flex-direction: column;
+    width: 30rem;
+    align-items: center;
+}
+
+.pay-container{
+    font-family: "ZT Talk", serif;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 10px;
+    box-shadow: 0 0 5px 2px rgb(224, 224, 224);
+    padding: 2rem;
+    width: 100%;
+}
+
+.button{
+    margin-top: 1rem;
+}
+
+.book_button{
+    font-family: "Satoshi", sans-serif;
+    background-color: var(--green);
+    border: 0;
+    border-radius: 0.25rem;
+    padding: 1rem;
+    cursor: pointer;
+}
+
+@media (max-width: 600px) {
+    .cart_page{
+        flex-direction: column;
+    }
+
+    .tickets{
+        width: 100%;
+    }
+
+    .pay {
+        width: 100%;
+    }
+}

@@ -20,13 +20,15 @@ main{
 @media (max-width: 1080px) {
     .car-container{
         flex-direction: column;
+        align-items: center;
     }
-
+    
 }
 
+
 .car-container .left-part {
-    display: flex;
-    flex-direction: column;
+display: flex;
+flex-direction: column;
 }
 
 .image_container{
@@ -93,7 +95,7 @@ ul {
 
 @media (max-width: 1200px) {
     .car-container {
-        gap: 1rem;
+    gap: 1rem;
 
     }
 
@@ -150,19 +152,19 @@ ul {
     font-size: 1rem;
     border-radius: 0.5rem;
     outline: none;
-    appearance: none; /* Remove estilo padrão do navegador */
-    -webkit-appearance: none; /* Remove estilo no Chrome/Safari */
-    -moz-appearance: textfield; /* Remove estilo no Firefox */
-    color: #000; /* Garanta visibilidade do texto */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+    color: #000;
 }
 
-/* Remove o ícone padrão no Chrome/Safari */
+
 .calendar::-webkit-calendar-picker-indicator {
     display: none;
     -webkit-appearance: none;
 }
 
-/* Remove o ícone padrão no Firefox */
+
 .calendar::-moz-focus-inner {
     border: 0;
 }
@@ -184,11 +186,26 @@ ul {
     cursor: pointer;
 }
 
-.button1:hover, .button2:hover{
-    outline:  1px solid var(--darkblue);
+@media (max-width: 950px){
+    .dates{
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .buttons{
+        align-items: center;
+    }
+
+    .button1, .button2{
+        width: 80%;
+    }
 }
 
-/* Ajuste para input[type="submit"] */
+.button1:hover, .button2:hover{
+ outline:  1px solid var(--darkblue);
+}
+
+
 .button1-cont input[type="submit"] {
     width: 4rem;
     font-family: "Satoshi", sans-serif;
@@ -199,7 +216,7 @@ ul {
     padding: 0.25rem;
 }
 
-/* Ajuste para input[type="date"] dentro do botão */
+
 .button1-cont input[type="date"] {
     border-radius: 0.125rem;
     border: 1px solid var(--darkblue);
@@ -237,32 +254,11 @@ input{
 
 }
 
-.ticket-item {
-    position: relative;
-    padding-left: 30px; /* Adjust to create space for the circle */
-    margin-bottom: 10px;
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 80%;
 }
 
-.ticket-item::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%);
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    background-color: transparent;
-}
 
-.ticket-item.red-circle::before {
-    background-color: #f06e6e;
-}
-
-.ticket-item.green-circle::before {
-    background-color: #78ed6b;
-}
-
-.ticket-item.yellow-circle::before {
-    background-color: #ebd249;
-}

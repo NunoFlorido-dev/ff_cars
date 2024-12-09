@@ -1,50 +1,53 @@
 <?php
-function changeLeftPart($alternateMode){
-    global $car;
-    if (!$alternateMode) {
-        global $license_plate, $id;
+function changeLeftPart($alternateMode): void
+{
+global $car;
+    if(!$alternateMode){
+        global $license_plate;
+        global $id;
 
-        echo <<<HTML
-        <form method="post" action="../pages/cart.php">
-            <input type="hidden" name="license_plate" value="{$license_plate}">
-            <input type="hidden" name="id" value="{$id}">
-            <input type="hidden" name="set_session" value="1">
+        echo  <<<HTML
+    <form method="post" action="../pages/cart.php">
+        <input type="hidden" name="license_plate" value="$license_plate">
+        <input type="hidden" name="id" value="$id">
+         <input type="hidden" name="set_session" value="1">
 
-            <div class="dates">
-                <div class="begindate">
-                    <label for="begin-time">Begin Time</label>
-                    <div class="calendar">
-                        <input type="date" id="begin-time" name="begin-time">
-                    </div>
-                </div>
-                <div class="enddate">
-                    <label for="end-time">End Time</label>
-                    <div class="calendar">
-                        <input type="date" id="end-time" name="end-time">
-                    </div>
-                </div>
+<div class = "dates">
+        <div class="begindate">
+        
+            <label for="begin-time">Begin Time</label>
+            <div class = "calendar">
+            <input type="date" id="begin-time" name="begin-time">
             </div>
-            <br>
-            <div class="buttons">
-                <button type="submit" id="add-pay" class="button1" formaction="cart.php">Add to Cart & Pay</button>
-                <br>
             </div>
-        </form>
+            <div class="enddate">
+            <label for="end-time">End Time</label>
+            <div class = "calendar">
+            <input type="date" id="end-time" name="end-time">
+            </div>
+        </div>
+        </div>
+
+        <br>
+        <div class ="buttons">
+        <button type="submit" id="add-pay" class="button1" formaction="cart.php">Add to Cart & Pay</button>
+        <br>
+        <button type="submit" class="button2"  id="add-continue" formaction="../index.php">Add to Cart & Continue Search</button>
+        </div>
+    </form>
 HTML;
     } else {
-        $license_plate = htmlspecialchars($car['license_plate']);
-        echo <<<HTML
-        <form method="post" action="../pages/car_form.php">
-            <input type="hidden" name="license_plate" value="{$license_plate}">
-            <button class="editbut" type="submit" id="edit">Edit</button>
-        </form>
-HTML;
+        echo '<form method="post" action="../pages/car_form.php">
+         <input type="hidden" name="license_plate" value="' . htmlspecialchars($car['license_plate']) . '">
+        
+         <button class="editbut" type="submit" id="edit">Edit</button>
+    </form>';
     }
+
 }
 
 
-
-function renderNavLinks($alternateMode)
+function renderNavLinks($alternateMode): string
 {
     if (!$alternateMode) {
         return '
@@ -60,7 +63,7 @@ function renderNavLinks($alternateMode)
     }
 }
 
-function renderNavLinksResponsive($alternateMode)
+function renderNavLinksResponsive($alternateMode): string
 {
     if (!$alternateMode) {
         return '<div class="mobile-nav invisibility nav-responsive">
@@ -76,7 +79,7 @@ function renderNavLinksResponsive($alternateMode)
     }
 }
 
-function renderNavLinksWithin($alternateMode)
+function renderNavLinksWithin($alternateMode): string
 {
     if (!$alternateMode) {
         return '
@@ -92,7 +95,7 @@ function renderNavLinksWithin($alternateMode)
     }
 }
 
-function renderNavLinksResponsiveWithin($alternateMode)
+function renderNavLinksResponsiveWithin($alternateMode): string
 {
     if (!$alternateMode) {
         return '<div class="mobile-nav invisibility nav-responsive">

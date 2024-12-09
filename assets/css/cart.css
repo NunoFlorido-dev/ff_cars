@@ -1,0 +1,75 @@
+body {
+    display:flex;
+    flex-direction: column;
+    font-family: "Satoshi", sans-serif;
+    align-items: center;
+}
+
+main {
+    justify-content: center; /* Alinha o conteúdo centralmente */
+    align-items: center;
+}
+.cart-page{
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center;    /* Centraliza verticalmente */
+    height: 100vh;          /* Garante que ocupe a altura total da página */
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.ticket-container h2{
+    font-size: 1.75rem;
+    font-family: "ZT Talk", serif;
+    font-weight: bold;
+    margin: 20px;
+}
+
+.ticket-container p{
+    margin-top: 3px;
+}
+
+.ticket-container{
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    width: 30rem;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 5px 2px rgb(224, 224, 224);
+    margin: 5rem;
+}
+
+.pay-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20rem;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 5px 2px rgb(224, 224, 224);
+    margin: 4rem;
+}
+
+..pay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+.book_button{
+    padding: 1rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #B9EEC3;
+    font-family: "Satoshi", sans-serif;
+    margin-top: 2rem;
+    width: 100%;
+}
+
+.book_button:hover{
+    outline: 1px solid var(--darkblue);
+}
+

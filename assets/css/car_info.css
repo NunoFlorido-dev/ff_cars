@@ -6,6 +6,11 @@ main{
     width: 100%;
 }
 
+h2{
+    font-family: "ZT Talk", sans-serif;
+    
+}
+
 .car-container{
     box-shadow: 0 0 5px 2px rgb(224, 224, 224);
     border-radius: 1rem;

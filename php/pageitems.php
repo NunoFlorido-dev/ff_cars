@@ -1,15 +1,77 @@
 <?php
-function changeLeftPart($alternateMode): void
+
+use JetBrains\PhpStorm\NoReturn;
+
+include(__DIR__ . '/../auth/connection.php');
+
+global $connection;
+if (!$connection) {
+    echo "Database connection failed.";
+    exit();
+}
+
+// Ensure that session_start() is only called if the session is not already started
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();  // Start session if not already started
+}
+
+// Function to safely trim a string and ensure it's not null
+function trimString($string): string
 {
-global $car;
+    return is_string($string) ? trim($string, "'") : '';
+}
+
+
+// You can print and debug the values to make sure they are properly populated
+
+
+#[NoReturn] function createBookingTicket($license_plate, $id, $begin_time, $end_time): void
+{
+
+    global $connection;
+
+    // Check for empty or invalid data and handle accordingly
+    if (empty($license_plate) || empty($id) || empty($begin_time) || empty($end_time)) {
+        echo "Error: Missing required fields.";
+        exit();
+    }
+
+    // Check database connection
+    if (!$connection) {
+        echo "Database connection error.";
+        exit();
+    }
+
+    // Step 3: Insert a new record with the updated values and is_latest = true
+    $create_ticket = "INSERT INTO booking_ticket (begin_time, end_time, car_license_plate, client_user_web_id) 
+                             VALUES ($1, $2, $3, $4)";
+
+    $result = pg_query_params($connection, $create_ticket, [
+        $begin_time, $end_time, $license_plate, $id]);
+
+    if (!$result) {
+        echo "Error inserting new history record: " . pg_last_error($connection);
+        exit();
+    } else {
+        echo "Successfully booked a car!";
+    }
+
+    header("Location: ../index.php");
+}
+
+?>
+
+<?php
+function changeLeftPart($alternateMode){
+    global $car;
     if(!$alternateMode){
         global $license_plate;
         global $id;
 
         echo  <<<HTML
     <form method="post" action="../pages/cart.php">
-        <input type="hidden" name="license_plate" value="$license_plate">
-        <input type="hidden" name="id" value="$id">
+        <input type="hidden" name="license_plate" value="{$license_plate}">
+        <input type="hidden" name="id" value="{$id}">
          <input type="hidden" name="set_session" value="1">
 
 <div class = "dates">
@@ -32,9 +94,11 @@ global $car;
         <div class ="buttons">
         <button type="submit" id="add-pay" class="button1" formaction="cart.php">Add to Cart & Pay</button>
         <br>
+        <button type="submit" class="button2"  id="add-continue" formaction="../index.php">Add to Cart & Continue Search</button>
         </div>
     </form>
 HTML;
+        ;
     } else {
         echo '<form method="post" action="../pages/car_form.php">
          <input type="hidden" name="license_plate" value="' . htmlspecialchars($car['license_plate']) . '">
@@ -46,7 +110,7 @@ HTML;
 }
 
 
-function renderNavLinks($alternateMode): string
+function renderNavLinks($alternateMode)
 {
     if (!$alternateMode) {
         return '
@@ -62,7 +126,7 @@ function renderNavLinks($alternateMode): string
     }
 }
 
-function renderNavLinksResponsive($alternateMode): string
+function renderNavLinksResponsive($alternateMode)
 {
     if (!$alternateMode) {
         return '<div class="mobile-nav invisibility nav-responsive">
@@ -78,7 +142,7 @@ function renderNavLinksResponsive($alternateMode): string
     }
 }
 
-function renderNavLinksWithin($alternateMode): string
+function renderNavLinksWithin($alternateMode)
 {
     if (!$alternateMode) {
         return '
@@ -94,7 +158,7 @@ function renderNavLinksWithin($alternateMode): string
     }
 }
 
-function renderNavLinksResponsiveWithin($alternateMode): string
+function renderNavLinksResponsiveWithin($alternateMode)
 {
     if (!$alternateMode) {
         return '<div class="mobile-nav invisibility nav-responsive">

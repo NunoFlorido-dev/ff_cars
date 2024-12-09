@@ -1,5 +1,6 @@
 <?php
-function changeLeftPart($alternateMode){
+function changeLeftPart($alternateMode): void
+{
 global $car;
     if(!$alternateMode){
         global $license_plate;
@@ -7,8 +8,8 @@ global $car;
 
         echo  <<<HTML
     <form method="post" action="../pages/cart.php">
-        <input type="hidden" name="license_plate" value="{$license_plate}">
-        <input type="hidden" name="id" value="{$id}">
+        <input type="hidden" name="license_plate" value="$license_plate">
+        <input type="hidden" name="id" value="$id">
          <input type="hidden" name="set_session" value="1">
 
 <div class = "dates">
@@ -35,7 +36,6 @@ global $car;
         </div>
     </form>
 HTML;
-;
     } else {
         echo '<form method="post" action="../pages/car_form.php">
          <input type="hidden" name="license_plate" value="' . htmlspecialchars($car['license_plate']) . '">
@@ -47,7 +47,7 @@ HTML;
 }
 
 
-function renderNavLinks($alternateMode)
+function renderNavLinks($alternateMode): string
 {
     if (!$alternateMode) {
         return '
@@ -63,7 +63,7 @@ function renderNavLinks($alternateMode)
     }
 }
 
-function renderNavLinksResponsive($alternateMode)
+function renderNavLinksResponsive($alternateMode): string
 {
     if (!$alternateMode) {
         return '<div class="mobile-nav invisibility nav-responsive">
@@ -79,7 +79,7 @@ function renderNavLinksResponsive($alternateMode)
     }
 }
 
-function renderNavLinksWithin($alternateMode)
+function renderNavLinksWithin($alternateMode): string
 {
     if (!$alternateMode) {
         return '
@@ -95,7 +95,7 @@ function renderNavLinksWithin($alternateMode)
     }
 }
 
-function renderNavLinksResponsiveWithin($alternateMode)
+function renderNavLinksResponsiveWithin($alternateMode): string
 {
     if (!$alternateMode) {
         return '<div class="mobile-nav invisibility nav-responsive">
